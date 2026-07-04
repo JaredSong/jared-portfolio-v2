@@ -24,9 +24,51 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Jared Song — Product Designer",
+  metadataBase: new URL("https://jaredsong.com"),
+  title: {
+    default: "Jared Song — Product / UIUX Designer",
+    template: "%s — Jared Song",
+  },
   description:
-    "Sole designer at CaCa, a ride-hailing platform in Yangon. Five surfaces, three scripts, 19 months. Read the case study.",
+    "Product-minded UI/UX designer creating clear web and mobile experiences for complex workflows, cross-cultural products, and practical shipped interfaces.",
+  alternates: {
+    canonical: "/en/",
+  },
+  authors: [{ name: "Jared Song" }],
+  keywords: [
+    "Product Design",
+    "UI/UX Design",
+    "Web Design",
+    "Mobile App Design",
+    "Design Systems",
+    "Frontend Design",
+    "Taiwan",
+    "Malaysia",
+  ],
+  openGraph: {
+    title: "Jared Song — Product / UIUX Designer",
+    description:
+      "Product-minded UI/UX designer creating clear web and mobile experiences for complex workflows, cross-cultural products, and practical shipped interfaces.",
+    url: "https://jaredsong.com/en/",
+    siteName: "Jared Song Portfolio",
+    type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "/jaredsong.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Jared Song",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jared Song — Product / UIUX Designer",
+    description:
+      "Product-minded UI/UX designer creating clear web and mobile experiences for complex workflows, cross-cultural products, and practical shipped interfaces.",
+    images: ["/jaredsong.jpg"],
+  },
 };
 
 export default function RootLayout({

@@ -33,6 +33,9 @@ const dictionaries: Record<Lang, Dict> = {
     "nav.work": "Work",
     "nav.about": "About",
     "nav.contact": "Contact",
+    "nav.menu": "Open menu",
+    "nav.close": "Close menu",
+    "nav.theme": "Toggle dark mode",
     "s0.kicker": "Jared Song · Product Designer",
     "s0.title":
       "19 months as the sole designer of a Yangon ride-hailing platform.",
@@ -131,7 +134,7 @@ const dictionaries: Record<Lang, Dict> = {
     "home.about.p2":
       "I work best in product roles where design owns the surface end-to-end — flows, system, copy, and (sometimes) the build. I'm strongest when there's a real constraint to design against: a hard market, a small team, a non-obvious user, a script that doesn't have ready-made type.",
     "home.about.worked": "Worked with",
-    "home.about.tbd": "earlier clients TBD",
+    "home.about.tbd": "WordPress · social · advertising · 2018–2023",
 
     "home.connect.title": "Let's Connect",
     "home.link.email": "Email",
@@ -161,6 +164,9 @@ const dictionaries: Record<Lang, Dict> = {
     "nav.work": "作品",
     "nav.about": "關於",
     "nav.contact": "聯絡",
+    "nav.menu": "開啟選單",
+    "nav.close": "關閉選單",
+    "nav.theme": "切換深色模式",
     "s0.kicker": "宋家駿 · 產品設計師",
     "s0.title": "在仰光叫車平台擔任唯一設計師的 19 個月。",
     "s0.body":
@@ -255,7 +261,7 @@ const dictionaries: Record<Lang, Dict> = {
     "home.about.p2":
       "我最適合讓設計端到端主導介面的產品職位——流程、系統、文案，有時連開發也一起。當有真實的限制可以對抗時，我發揮得最好：艱難的市場、小團隊、非典型的使用者、沒有現成字型的文字系統。",
     "home.about.worked": "合作過",
-    "home.about.tbd": "更早的客戶待補",
+    "home.about.tbd": "WordPress · 社群 · 廣告 · 2018–2023",
 
     "home.connect.title": "聯繫方式",
     "home.link.email": "電子郵件",

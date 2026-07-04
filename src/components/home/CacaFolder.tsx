@@ -133,9 +133,11 @@ export default function CacaFolder() {
               className={`pointer-events-none absolute z-30 ${pos}`}
               style={depth(px, py)}
             >
-              <img
+              <Image
                 src={src}
                 alt=""
+                width={160}
+                height={160}
                 className={`w-full opacity-0 scale-75 transition-all duration-300 ease-out open:opacity-100 open:scale-100 motion-reduce:transition-none ${imgCls}`}
               />
             </div>

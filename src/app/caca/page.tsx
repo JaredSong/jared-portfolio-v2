@@ -83,12 +83,12 @@ export default function CacaCaseStudy() {
       body: t("cs.closing.body"),
       footer: (
         <div className="flex flex-wrap items-center gap-5">
-          <a
+          <Link
             href="/#connect"
             className="rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
           >
             {t("cs.closing.cta")}
-          </a>
+          </Link>
           <Link
             href="/"
             className="text-sm font-medium text-neutral-500 hover:text-foreground"
