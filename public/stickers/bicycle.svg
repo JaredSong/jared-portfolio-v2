@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 140">
+  <defs>
+    <filter id="sh" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="2" dy="4" stdDeviation="4" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <g filter="url(#sh)">
+    <!-- die-cut blob -->
+    <path d="M20 100 A26 26 0 1 1 72 100 L138 100 A26 26 0 1 1 190 100 L138 46 L120 20 L64 20 L74 46 Z"
+          fill="#fff" stroke="#fff" stroke-width="18" stroke-linejoin="round"/>
+    <!-- cargo box -->
+    <rect x="58" y="14" width="58" height="40" rx="6" fill="#d99a1b"/>
+    <rect x="58" y="14" width="58" height="14" rx="6" fill="#b57d0e"/>
+    <text x="87" y="45" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#fff" text-anchor="middle">CACA</text>
+    <!-- wheels -->
+    <circle cx="46" cy="100" r="24" fill="none" stroke="#123f22" stroke-width="7"/>
+    <circle cx="46" cy="100" r="4" fill="#123f22"/>
+    <circle cx="164" cy="100" r="24" fill="none" stroke="#123f22" stroke-width="7"/>
+    <circle cx="164" cy="100" r="4" fill="#123f22"/>
+    <!-- frame -->
+    <path d="M46 100 L88 62 L136 62 L164 100 M112 62 L104 100 L46 100" fill="none" stroke="#1f9d4d" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- handlebar + seat -->
+    <path d="M136 62 L130 44 L144 40" fill="none" stroke="#123f22" stroke-width="6" stroke-linecap="round"/>
+    <path d="M88 62 L84 48 L72 46" fill="none" stroke="#123f22" stroke-width="6" stroke-linecap="round"/>
+  </g>
+</svg>

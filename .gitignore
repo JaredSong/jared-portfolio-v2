@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# claude code — local-only project instructions and settings
+CLAUDE.local.md
+.claude/settings.local.json
+.figma-scrape/
+
+# local-only working drafts (case study writing, homepage wireframes, discussion notes)
+case-study/
