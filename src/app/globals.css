@@ -360,6 +360,64 @@ body::after {
   }
 }
 
+/* ─────────────────────────────────────────────────────────────
+   Touch-device scroll-driven phone slide-out (CacaFolder).
+   On touch, scroll IS the hover gesture: as the folder card scrolls
+   into view, the two phones rise out of it, progress tied directly
+   to scroll position (reverses when scrolling back). Desktop keeps
+   the hover/IO behavior — this only runs where hover doesn't exist.
+   Stickers stay on the threshold bloom by design (scroll-linking
+   six staggered pops reads as jitter).
+   ───────────────────────────────────────────────────────────── */
+@supports (animation-timeline: view()) {
+  @media (hover: none) and (prefers-reduced-motion: no-preference) {
+    .folder-card {
+      view-timeline: --folder-view block;
+    }
+    .phone-rise-a,
+    .phone-rise-b {
+      animation-timeline: --folder-view;
+      animation-fill-mode: both;
+      animation-timing-function: linear;
+      /* the scroll animation owns these — stop the hover transition
+         from fighting it */
+      transition: none;
+    }
+    .phone-rise-a {
+      animation-name: phone-out-a;
+      animation-range: entry 50% entry 100%;
+    }
+    .phone-rise-b {
+      animation-name: phone-out-b;
+      animation-range: entry 60% entry 100%;
+    }
+    @keyframes phone-out-a {
+      from {
+        opacity: 0;
+        translate: -85% 0;
+        rotate: -6deg;
+      }
+      to {
+        opacity: 1;
+        translate: -85% -8rem;
+        rotate: -10deg;
+      }
+    }
+    @keyframes phone-out-b {
+      from {
+        opacity: 0;
+        translate: -15% 0;
+        rotate: 6deg;
+      }
+      to {
+        opacity: 1;
+        translate: -15% -7rem;
+        rotate: 10deg;
+      }
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html,
   body {

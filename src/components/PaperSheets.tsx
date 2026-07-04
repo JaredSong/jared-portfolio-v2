@@ -87,9 +87,11 @@ export default function PaperSheets({
                 <div aria-hidden className="paper-holes" />
                 <div aria-hidden className="paper-margin-line" />
 
-                {/* corner action (e.g. ✕ close) — lives ON the paper */}
+                {/* corner action (e.g. ✕ close) — lives ON the paper.
+                    top-16 on mobile: the fixed header spans the full width
+                    there and would cover a top-4 corner */}
                 {corner && (
-                  <div className="absolute right-4 top-4 z-10 md:right-6 md:top-6">
+                  <div className="absolute right-4 top-16 z-10 md:right-6 md:top-6">
                     {corner}
                   </div>
                 )}

@@ -115,16 +115,17 @@ export default function Home() {
                       ? "noopener noreferrer"
                       : undefined
                   }
-                  className="group flex items-center justify-between border-b border-neutral-200 py-4 transition-colors hover:border-caca-green/50 dark:border-white/10 dark:hover:border-green-400/40"
+                  className="group flex items-center justify-between border-b border-neutral-200 py-4 transition-colors hover:border-[#0B66C2]/40 dark:border-white/10 dark:hover:border-[#1D9BF0]/40"
                 >
-                  {/* hover: word grows from the left + goes brand green;
-                      arrow flies up-right — no background fill */}
-                  <span className="inline-block origin-left font-medium transition-all duration-200 ease-out group-hover:scale-[1.06] group-hover:text-caca-green dark:group-hover:text-green-400">
+                  {/* hover: word grows from the left + takes the header's
+                      blue (badge/LinkedIn palette); arrow flies up-right —
+                      no background fill */}
+                  <span className="inline-block origin-left font-medium transition-all duration-200 ease-out group-hover:scale-[1.06] group-hover:text-[#0B66C2] dark:group-hover:text-[#1D9BF0]">
                     {t(link.key)}
                   </span>
                   <span
                     aria-hidden
-                    className="inline-block text-neutral-400 transition-all duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-caca-green dark:text-neutral-500 dark:group-hover:text-green-400"
+                    className="inline-block text-neutral-400 transition-all duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#0B66C2] dark:text-neutral-500 dark:group-hover:text-[#1D9BF0]"
                   >
                     ↗
                   </span>

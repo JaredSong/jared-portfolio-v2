@@ -24,19 +24,22 @@ export default function MiniFolder({ folder }: { folder: MiniFolderData }) {
   return (
     <Link
       href={folder.href}
-      className="group relative block"
+      // single-column: match the CaCa folder's 440px cap (a full-width mini
+      // reads BIGGER than the featured folder); grid columns take over at sm+
+      className="group relative mx-auto block w-full max-w-[440px] sm:max-w-none"
       aria-label={folder.label}
     >
-      {/* papers peeking from the top — lift on hover/focus */}
+      {/* papers peeking from the top — %-width overlapping sheets (same
+          treatment as the CaCa folder), lift on hover/focus */}
       {[
-        "left-5 -top-3 -rotate-2 open:-translate-y-2",
-        "left-1/3 -top-4 rotate-1 open:-translate-y-3",
-        "right-8 -top-3 -rotate-1 open:-translate-y-2",
+        "-top-3 left-4 w-[42%] -rotate-1 open:-translate-y-2",
+        "-top-5 left-[30%] w-[48%] rotate-[0.75deg] open:-translate-y-3",
+        "-top-4 right-3 w-[36%] -rotate-[0.5deg] open:-translate-y-2",
       ].map((cls) => (
         <div
           key={cls}
           aria-hidden
-          className={`absolute z-0 h-10 w-24 rounded-sm bg-white shadow-sm transition-transform duration-300 ease-out motion-reduce:transition-none dark:bg-neutral-200 ${cls}`}
+          className={`absolute z-0 h-12 rounded-t-md bg-white shadow-sm transition-transform duration-300 ease-out motion-reduce:transition-none dark:bg-neutral-200 ${cls}`}
         />
       ))}
 
@@ -51,7 +54,7 @@ export default function MiniFolder({ folder }: { folder: MiniFolderData }) {
           stays light in dark mode, like the white papers: a physical object.
           No grain overlay — folder surfaces stay clean. */}
       <div
-        className={`relative z-10 flex h-40 flex-col justify-between overflow-hidden rounded-xl border border-black/5 p-5 shadow-lg transition-all duration-300 ease-out group-hover:-translate-y-1.5 group-hover:shadow-xl motion-reduce:transition-none sm:h-44 ${folder.gradient}`}
+        className={`relative z-10 flex aspect-[8/5] flex-col justify-between overflow-hidden rounded-xl border border-black/5 p-5 shadow-lg transition-all duration-300 ease-out group-hover:-translate-y-1.5 group-hover:shadow-xl motion-reduce:transition-none sm:aspect-auto sm:h-44 ${folder.gradient}`}
       >
         <div className="flex items-start justify-between">
           <span className="font-mono text-sm text-neutral-500">
