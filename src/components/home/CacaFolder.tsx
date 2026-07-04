@@ -48,7 +48,7 @@ const stickers = [
 ] as const;
 
 export default function CacaFolder() {
-  const { t } = useI18n();
+  const { t, localeHref } = useI18n();
   const cardRef = useRef<HTMLAnchorElement>(null);
   // touch-device reveal (hover-capable devices rely on :hover instead)
   const [inViewOpen, setInViewOpen] = useState(false);
@@ -94,7 +94,7 @@ export default function CacaFolder() {
       <div className="mt-28 flex justify-center md:mt-24" style={{ perspective: "1100px" }}>
         <Link
           ref={cardRef}
-          href="/caca"
+          href={localeHref("/caca")}
           aria-label={t("home.cs.aria")}
           onMouseMove={handleMove}
           onMouseLeave={handleLeave}

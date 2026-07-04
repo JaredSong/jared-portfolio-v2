@@ -10,7 +10,7 @@ import { useI18n } from "@/lib/i18n";
  */
 
 export default function OtherSides() {
-  const { t } = useI18n();
+  const { t, localeHref } = useI18n();
 
   const folders: MiniFolderData[] = [
     // v1-style pastels: pale same-hue washes + dark text. Hierarchy is
@@ -19,7 +19,7 @@ export default function OtherSides() {
     // Earlier = range proof.
     {
       id: "eagle",
-      href: "/also/payment-review",
+      href: localeHref("/also/payment-review"),
       label: t("home.sides.eagle"),
       sub: t("home.sides.eagle.sub"),
       mark: "P /",
@@ -37,7 +37,7 @@ export default function OtherSides() {
     },
     {
       id: "wheelcake",
-      href: "/also/wheelcake",
+      href: localeHref("/also/wheelcake"),
       label: t("home.sides.wheelcake"),
       sub: t("home.sides.wheelcake.sub"),
       mark: "W /",
@@ -53,7 +53,7 @@ export default function OtherSides() {
     },
     {
       id: "earlier",
-      href: "/also/earlier-work",
+      href: localeHref("/also/earlier-work"),
       label: t("home.sides.earlier"),
       sub: t("home.sides.earlier.sub"),
       mark: "E /",

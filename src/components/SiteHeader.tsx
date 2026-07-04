@@ -6,13 +6,15 @@
  *   left  : avatar + name + verified badge · LinkedIn · Archive
  *   right : Work / About / Contact · divider · dark toggle · EN/中
  *
- * Adapted to v2: links use plain hash anchors (no locale routing yet), labels
- * + language come from the lightweight i18n layer. Language scope is EN/中 by
+ * Adapted to v2: internal links are locale-prefixed (/en/..., /zh/...) and
+ * the EN/中 switch NAVIGATES to the same path in the other locale tree —
+ * the URL is the language source of truth. Language scope is EN/中 by
  * decision — Burmese lives inside case-study content, not the chrome.
  */
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useI18n, LANG_LABELS, type Lang } from "@/lib/i18n";
 
@@ -71,8 +73,18 @@ function ResumeIcon() {
 }
 
 export default function SiteHeader() {
-  const { lang, setLang, t } = useI18n();
+  const { lang, setLang, t, localeHref } = useI18n();
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  // Switch language = go to the same page in the other locale tree.
+  const switchTo = (l: Lang) => {
+    if (l === lang) return;
+    setLang(l); // persists the choice (feeds the / redirect stub)
+    const rest = pathname.replace(/^\/(en|zh)(?=\/|$)/, "");
+    router.push(`/${l}${rest}`);
+  };
 
   const toggleTheme = () => {
     const next = !document.documentElement.classList.contains("dark");
@@ -84,7 +96,7 @@ export default function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-5 md:pt-6 print:hidden">
       <div className="mx-auto flex w-full max-w-[60.75rem] items-center justify-between">
         <div className="flex shrink-0 items-center gap-3">
-          <Link href="/" className={`${pill} p-1`}>
+          <Link href={localeHref("/")} className={`${pill} p-1`}>
             <span className="relative h-8 w-8">
               <Image
                 src="/jaredsong-pixel.png"
@@ -112,7 +124,7 @@ export default function SiteHeader() {
           </Link>
 
           <Link
-            href="/resume"
+            href={localeHref("/resume")}
             aria-label="Resume"
             className={`${pill} hidden size-10 hover:bg-caca-green hover:text-white sm:flex`}
           >
@@ -125,7 +137,7 @@ export default function SiteHeader() {
             {navItems.map((item) => (
               <Link
                 key={item.key}
-                href={item.href}
+                href={localeHref(item.href)}
                 className="rounded-full px-4 py-2.5 text-sm font-medium text-[#262626] duration-100 hover:bg-white/[0.66] hover:backdrop-blur-[87px] dark:text-white dark:hover:bg-neutral-900/[0.66]"
               >
                 {t(item.key)}
@@ -199,7 +211,7 @@ export default function SiteHeader() {
               <button
                 key={l}
                 type="button"
-                onClick={() => setLang(l)}
+                onClick={() => switchTo(l)}
                 aria-pressed={lang === l}
                 className={`flex h-8 items-center rounded-full px-3 text-sm font-medium transition-colors ${
                   lang === l
@@ -228,7 +240,7 @@ export default function SiteHeader() {
                 <LinkedInIcon />
               </Link>
               <Link
-                href="/resume"
+                href={localeHref("/resume")}
                 aria-label="Resume"
                 className={`${pill} size-10 hover:bg-caca-green hover:text-white`}
               >
@@ -261,7 +273,7 @@ export default function SiteHeader() {
             {navItems.map((item) => (
               <Link
                 key={item.key}
-                href={item.href}
+                href={localeHref(item.href)}
                 onClick={() => setMenuOpen(false)}
                 className="flex items-center justify-between py-6 text-2xl font-semibold tracking-tight text-[#262626] dark:text-white"
               >

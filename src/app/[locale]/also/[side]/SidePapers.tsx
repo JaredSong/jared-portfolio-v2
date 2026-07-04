@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n";
 import PaperSheets, { type SheetData } from "@/components/PaperSheets";
+import PaymentFlowDiagram from "@/components/PaymentFlowDiagram";
 import ProofBadge from "@/components/ProofBadge";
 
 /* photo printed on the paper — height-capped so the sheet still fits one
@@ -47,7 +48,7 @@ const accents: Record<string, string> = {
 };
 
 export default function SidePapers({ side }: { side: string }) {
-  const { t } = useI18n();
+  const { t, localeHref } = useI18n();
   const accent = accents[side];
 
   const heroFor = (prefix: string): SheetData => ({
@@ -65,7 +66,7 @@ export default function SidePapers({ side }: { side: string }) {
     body: t("also.wip.body"),
     footer: (
       <Link
-        href="/"
+        href={localeHref("/")}
         className="text-sm font-medium text-neutral-500 hover:text-foreground"
       >
         {t("also.back")}
@@ -77,7 +78,10 @@ export default function SidePapers({ side }: { side: string }) {
   if (side === "payment-review") {
     // Deliberately minimal until Jared clears more with his employer:
     // workflow name + status only, no work detail, no employer name.
-    sheets = [heroFor("also.eagle"), wipSheet];
+    // The aside diagram stays inside the same ceiling — generic stages only.
+    const hero = heroFor("also.eagle");
+    hero.aside = <PaymentFlowDiagram />;
+    sheets = [hero, wipSheet];
   } else if (side === "wheelcake") {
     // full concise case: founded → why → challenge → brand → menu → ops →
     // reflection. Honest about the closure — that's the point of the case.
@@ -139,7 +143,7 @@ export default function SidePapers({ side }: { side: string }) {
       <div className="flex flex-wrap items-center gap-5">
         {visitLink}
         <Link
-          href="/"
+          href={localeHref("/")}
           className="text-sm font-medium text-neutral-500 hover:text-foreground"
         >
           {t("also.back")}
@@ -153,7 +157,7 @@ export default function SidePapers({ side }: { side: string }) {
 
   const closeButton = (
     <Link
-      href="/"
+      href={localeHref("/")}
       aria-label={t("also.back")}
       className="flex size-10 items-center justify-center rounded-full bg-black/[0.04] text-[#494949] transition-all duration-200 hover:bg-black/[0.08] dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
     >

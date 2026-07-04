@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Caveat } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
-import { LanguageProvider } from "@/lib/i18n";
-import SiteHeader from "@/components/SiteHeader";
-import BackToTop from "@/components/BackToTop";
 
 // Set the dark class before first paint so there's no light→dark flash.
 const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`;
+
+// GA4 — same property as v1. The measurement ID is public by nature (it
+// ships in the HTML), so it's inlined rather than env-injected: a fresh
+// clone must not silently lose analytics on a static export. Production
+// only, so dev sessions don't pollute the data (v1 gated the same way).
+// SPA route changes are covered by GA4's enhanced measurement (history
+// events) — no per-route gtag calls needed.
+const GA_ID = "G-3DJZTFVNJV";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -97,11 +103,36 @@ export default function RootLayout({
         >
           <div className="grain-texture animate-moving-wiggle h-1/2 w-full origin-top blur-[30px] will-change-transform md:blur-[50px] dark:blur-[40px] dark:md:blur-[60px]" />
         </div>
-        <LanguageProvider>
-          <SiteHeader />
-          {children}
-          <BackToTop />
-        </LanguageProvider>
+        {children}
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            {/* Consent Mode, v1-parity: everything denied by default; a
+                previously accepted visitor is re-granted before config so
+                the very first pageview is already consented. The banner
+                (CookieConsent) grants on click. */}
+            <Script id="ga4" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent', 'default', {
+  analytics_storage: 'denied',
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied'
+});
+try {
+  if (localStorage.getItem('cookie-consent') === 'accepted') {
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+  }
+} catch (e) {}
+gtag('js', new Date());
+gtag('config', '${GA_ID}');`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );

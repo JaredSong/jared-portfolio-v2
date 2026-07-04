@@ -1,18 +1,25 @@
 "use client";
 
 /**
- * Lightweight i18n for the v2 prototype.
+ * Lightweight i18n, now locale-ROUTED (2026-07-04): /en/... and /zh/... are
+ * real static routes (v1-style, crawlable + deep-linkable). The [locale]
+ * layout mounts LanguageProvider with the URL's locale; the URL is the
+ * source of truth. localStorage only drives the / redirect stub and
+ * remembers the visitor's explicit choice.
  *
- * Deliberately NOT next-intl / locale-routed yet — this is a placeholder
- * layer that proves the tri-script requirement (EN · 中 · မြန်) works end to
- * end (switching, fallback, font rendering) without committing the whole app
- * to a routing framework. When v2 hardens, this same dictionary shape can be
- * lifted into next-intl message catalogs with almost no copy changes.
+ * Still deliberately NOT next-intl — the dictionary shape can be lifted
+ * into message catalogs later with almost no copy changes.
  *
  * Missing keys fall back to English, so a half-translated locale still renders.
  */
 
-import { createContext, useContext, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 
 export const LANGS = ["en", "zh", "my"] as const;
 export type Lang = (typeof LANGS)[number];
@@ -37,6 +44,9 @@ const dictionaries: Record<Lang, Dict> = {
     "nav.close": "Close menu",
     "nav.theme": "Toggle dark mode",
     "nav.top": "Back to top",
+    "cookie.message":
+      "This site uses cookies for anonymous visit analytics — nothing else.",
+    "cookie.accept": "Accept",
     "s0.kicker": "Jared Song · Product Designer",
     "s0.title":
       "19 months as the sole designer of a Yangon ride-hailing platform.",
@@ -201,6 +211,16 @@ const dictionaries: Record<Lang, Dict> = {
     "also.eagle.title": "Construction payment review workflow",
     "also.eagle.body":
       "A concise case on document intake, evidence collection, review states, correction requests, and approval flows — details in conversation.",
+    // Flow diagram labels — ONLY the vocabulary already approved in the
+    // body copy above. No employer name, modules, or detail beyond it.
+    "also.eagle.flow.intake": "Document intake",
+    "also.eagle.flow.evidence": "Evidence collection",
+    "also.eagle.flow.review": "Review",
+    "also.eagle.flow.fix": "Correction request",
+    "also.eagle.flow.resubmit": "resubmit",
+    "also.eagle.flow.approve": "Approval",
+    "also.eagle.flow.aria":
+      "Flow diagram: document intake, evidence collection, review, then approval — correction requests loop back for resubmission.",
     // Wheelcake: real brand Jared FOUNDED AND OPERATED in Kaohsiung; the
     // business closed — stated honestly, framed as the hands-on product
     // lesson it was. Never call it "live".
@@ -251,6 +271,8 @@ const dictionaries: Record<Lang, Dict> = {
     "nav.close": "關閉選單",
     "nav.theme": "切換深色模式",
     "nav.top": "回到頂部",
+    "cookie.message": "本站使用 Cookie 進行匿名流量分析——僅此而已。",
+    "cookie.accept": "接受",
     "s0.kicker": "Jared Song · 產品設計師",
     "s0.title": "在仰光叫車平台擔任唯一設計師的 19 個月。",
     "s0.body":
@@ -404,6 +426,14 @@ const dictionaries: Record<Lang, Dict> = {
     "also.eagle.title": "工程請款審核流程",
     "also.eagle.body":
       "聚焦文件收件、證據蒐集、審核狀態、補件要求與簽核流程的精簡案例——細節留在面談。",
+    "also.eagle.flow.intake": "文件收件",
+    "also.eagle.flow.evidence": "證據蒐集",
+    "also.eagle.flow.review": "審核",
+    "also.eagle.flow.fix": "補件要求",
+    "also.eagle.flow.resubmit": "重新送件",
+    "also.eagle.flow.approve": "簽核",
+    "also.eagle.flow.aria":
+      "流程圖：文件收件、證據蒐集、審核、簽核——補件要求會退回重新送件。",
     "also.wheelcake.kicker": "個人案例 · W /",
     "also.wheelcake.title": "What's Wheelcake 微吃車輪餅",
     "also.wheelcake.body":
@@ -464,16 +494,57 @@ type I18nValue = {
   lang: Lang;
   setLang: (l: Lang) => void;
   t: (key: string) => string;
+  localeHref: (path: string) => string;
 };
 
 const I18nContext = createContext<I18nValue | null>(null);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>("en");
+const STORAGE_KEY = "lang";
+
+/* BCP 47 values for <html lang> — the site's zh is Traditional Chinese */
+const HTML_LANG: Record<Lang, string> = {
+  en: "en",
+  zh: "zh-Hant",
+  my: "my",
+};
+
+export function LanguageProvider({
+  children,
+  initial = "en",
+}: {
+  children: ReactNode;
+  /* the URL's locale — [locale]/layout passes it; the URL wins over storage */
+  initial?: Lang;
+}) {
+  const [lang, setLangState] = useState<Lang>(initial);
+
+  // Keep state in step with the URL segment (covers back/forward between
+  // /en/... and /zh/... where the layout stays mounted).
+  useEffect(() => {
+    setLangState(initial);
+  }, [initial]);
+
+  // Storage is written only on an explicit choice — it feeds the / redirect
+  // stub, never overrides the URL.
+  const setLang = (l: Lang) => {
+    setLangState(l);
+    try {
+      localStorage.setItem(STORAGE_KEY, l);
+    } catch {
+      /* non-fatal */
+    }
+  };
+
+  useEffect(() => {
+    document.documentElement.lang = HTML_LANG[lang];
+  }, [lang]);
+
   const t = (key: string) =>
     dictionaries[lang][key] ?? dictionaries.en[key] ?? key;
+  /* prefix an internal path with the active locale: "/caca" → "/en/caca" */
+  const localeHref = (path: string) => `/${lang}${path === "/" ? "" : path}` || "/";
   return (
-    <I18nContext.Provider value={{ lang, setLang, t }}>
+    <I18nContext.Provider value={{ lang, setLang, t, localeHref }}>
       {children}
     </I18nContext.Provider>
   );

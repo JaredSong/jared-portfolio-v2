@@ -36,7 +36,7 @@ const chapters: { id: string; key: string; accent?: boolean }[] = [
 ];
 
 export default function CacaCaseStudy() {
-  const { t } = useI18n();
+  const { t, localeHref } = useI18n();
 
   const sheets: SheetData[] = chapters.map(({ id, key, accent }) => ({
     id,
@@ -118,13 +118,13 @@ export default function CacaCaseStudy() {
   sheets[sheets.length - 1].footer = (
     <div className="flex flex-wrap items-center gap-5">
       <Link
-        href="/#connect"
+        href={localeHref("/#connect")}
         className="rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
       >
         {t("cs.closing.cta")}
       </Link>
       <Link
-        href="/"
+        href={localeHref("/")}
         className="text-sm font-medium text-neutral-500 hover:text-foreground"
       >
         {t("cs.back")}
@@ -135,7 +135,7 @@ export default function CacaCaseStudy() {
   // ✕ close — v1 story-view pattern, on each paper's top-right corner
   const closeButton = (
     <Link
-      href="/"
+      href={localeHref("/")}
       aria-label={t("cs.back")}
       className="flex size-10 items-center justify-center rounded-full bg-black/[0.04] text-[#494949] transition-all duration-200 hover:bg-black/[0.08] dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
     >
