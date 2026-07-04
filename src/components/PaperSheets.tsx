@@ -143,11 +143,12 @@ export default function PaperSheets({
                 </div>
 
                 {/* page number, bottom-right, like a printed sheet */}
-                {/* bottom-[4.5rem] = 1.5rem above the fold once the 3rem
-                    off-screen overhang is accounted for */}
+                {/* centered folio, book-style — bottom-[4.5rem] = 1.5rem above
+                    the fold after the 3rem off-screen overhang; center keeps
+                    it clear of the fixed back-to-top button at bottom-right */}
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute bottom-[4.5rem] right-6 font-mono text-xs text-neutral-400 dark:text-neutral-600"
+                  className="pointer-events-none absolute bottom-[4.5rem] left-1/2 -translate-x-1/2 font-mono text-xs text-neutral-400 dark:text-neutral-600"
                 >
                   {String(i + 1).padStart(2, "0")} /{" "}
                   {String(sheets.length).padStart(2, "0")}

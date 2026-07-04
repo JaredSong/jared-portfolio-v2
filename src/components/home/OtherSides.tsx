@@ -26,11 +26,13 @@ export default function OtherSides() {
       note: t("home.sides.eagle.note"),
       gradient: "bg-gradient-to-br from-[#dbeafe] to-[#bfdbfe]",
       tab: "bg-gradient-to-r from-[#bfdbfe] to-[#a5cdf7]",
-      glow: "rgba(96,165,250,0.5)",
+      glow: "rgba(96,165,250,0.65)",
+      // label text sits bottom-left — stickers stay on edges/corners away
+      // from it
       stickers: [
         { src: "/stickers/eagle/hardhat.svg", cls: "-top-10 left-[22%] w-20 rotate-[5deg]", delay: "open:delay-[0ms]" },
-        { src: "/stickers/eagle/payapp.svg", cls: "top-10 -left-4 w-14 -rotate-[10deg]", delay: "open:delay-[60ms]" },
-        { src: "/stickers/eagle/camera.svg", cls: "-bottom-9 right-8 w-20 -rotate-[7deg]", delay: "open:delay-[120ms]" },
+        { src: "/stickers/eagle/payapp.svg", cls: "top-16 -right-6 w-14 rotate-[8deg]", delay: "open:delay-[60ms]" },
+        { src: "/stickers/eagle/camera.svg", cls: "-bottom-10 -right-5 w-20 -rotate-[7deg]", delay: "open:delay-[120ms]" },
       ],
     },
     {
@@ -41,12 +43,12 @@ export default function OtherSides() {
       mark: "W /",
       gradient: "bg-gradient-to-br from-[#ffedd5] to-[#fed7aa]",
       tab: "bg-gradient-to-r from-[#fed7aa] to-[#fdc98c]",
-      glow: "rgba(251,146,60,0.45)",
+      glow: "rgba(251,146,60,0.6)",
       stickers: [
         { src: "/stickers/wheelcake/hello.png", cls: "-top-10 left-10 w-20 -rotate-[8deg]", delay: "open:delay-[0ms]" },
         { src: "/stickers/wheelcake/oreo.png", cls: "top-8 -right-5 w-14 rotate-[14deg]", delay: "open:delay-[60ms]" },
-        { src: "/stickers/wheelcake/thaitea.png", cls: "-bottom-8 left-[30%] w-12 -rotate-[4deg]", delay: "open:delay-[120ms]" },
-        { src: "/stickers/wheelcake/sunglasses.png", cls: "bottom-6 -left-5 w-16 rotate-[6deg]", delay: "open:delay-[180ms]" },
+        { src: "/stickers/wheelcake/thaitea.png", cls: "-bottom-10 right-6 w-12 rotate-[5deg]", delay: "open:delay-[120ms]" },
+        { src: "/stickers/wheelcake/sunglasses.png", cls: "top-16 -left-8 w-16 -rotate-[9deg]", delay: "open:delay-[180ms]" },
       ],
     },
     {
@@ -57,7 +59,7 @@ export default function OtherSides() {
       mark: "E /",
       gradient: "bg-gradient-to-br from-[#f5f5f4] to-[#e7e5e4]",
       tab: "bg-gradient-to-r from-[#e7e5e4] to-[#d9d6d4]",
-      glow: "rgba(168,162,158,0.45)",
+      glow: "rgba(168,162,158,0.55)",
     },
   ];
 

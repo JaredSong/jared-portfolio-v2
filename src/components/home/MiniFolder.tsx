@@ -62,9 +62,9 @@ export default function MiniFolder({ folder }: { folder: MiniFolderData }) {
       {/* glow in the folder's own color — same in light and dark */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -inset-x-16 -inset-y-12 -z-10 rounded-full opacity-0 blur-2xl transition-opacity duration-500 ease-out open:opacity-100 motion-reduce:transition-none"
+        className="pointer-events-none absolute -inset-x-20 -inset-y-16 -z-10 rounded-full opacity-0 blur-2xl transition-opacity duration-500 ease-out open:opacity-100 motion-reduce:transition-none"
         style={{
-          background: `radial-gradient(ellipse at center, ${folder.glow}, transparent 72%)`,
+          background: `radial-gradient(ellipse at center, ${folder.glow} 0%, ${folder.glow} 30%, transparent 78%)`,
         }}
       />
 

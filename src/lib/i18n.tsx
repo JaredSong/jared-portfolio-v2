@@ -36,6 +36,7 @@ const dictionaries: Record<Lang, Dict> = {
     "nav.menu": "Open menu",
     "nav.close": "Close menu",
     "nav.theme": "Toggle dark mode",
+    "nav.top": "Back to top",
     "s0.kicker": "Jared Song · Product Designer",
     "s0.title":
       "19 months as the sole designer of a Yangon ride-hailing platform.",
@@ -249,6 +250,7 @@ const dictionaries: Record<Lang, Dict> = {
     "nav.menu": "開啟選單",
     "nav.close": "關閉選單",
     "nav.theme": "切換深色模式",
+    "nav.top": "回到頂部",
     "s0.kicker": "Jared Song · 產品設計師",
     "s0.title": "在仰光叫車平台擔任唯一設計師的 19 個月。",
     "s0.body":

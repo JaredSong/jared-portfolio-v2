@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "deploy": "npm run build && scp -P 65002 -r out/* u753670897@145.223.108.153:/home/u753670897/domains/jaredsong.com/public_html/"
   },
   "dependencies": {
     "next": "16.0.8",

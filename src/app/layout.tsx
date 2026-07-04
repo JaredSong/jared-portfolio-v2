@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Caveat } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n";
 import SiteHeader from "@/components/SiteHeader";
+import BackToTop from "@/components/BackToTop";
 
 // Set the dark class before first paint so there's no light→dark flash.
 const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme:dark)').matches;if(d)document.documentElement.classList.add('dark');}catch(e){}})();`;
@@ -99,6 +100,7 @@ export default function RootLayout({
         <LanguageProvider>
           <SiteHeader />
           {children}
+          <BackToTop />
         </LanguageProvider>
       </body>
     </html>
