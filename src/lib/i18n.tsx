@@ -92,6 +92,70 @@ const dictionaries: Record<Lang, Dict> = {
       "Owning the surface end-to-end, in a hard market, with a small team — this is the work I want more of.",
     "cs.closing.cta": "Get in touch",
     "cs.back": "← Back home",
+
+    // ── Homepage ──
+    "home.hero.title": "One designer, five surfaces, three scripts.",
+    "home.hero.sub":
+      "19 months as the sole designer at a Yangon ride-hailing startup — I also code, motion, and occasionally WordPress.",
+    "home.hero.cta": "Get in Touch",
+    "home.hero.status": "Open to opportunities",
+
+    "home.cs.kicker": "Case study",
+    "home.cs.note":
+      "Heads up — this one's lengthy. ~12 min read. Sole designer, five surfaces, three scripts, Yangon.",
+    "home.cs.title": "A ride-hailing platform in Yangon",
+    "home.cs.dates": "Sole designer · July 2023 → February 2025",
+    "home.cs.read": "12 min read",
+    "home.cs.aria": "CaCa case study, 12 minute read",
+    "home.cs.postit1": "19 months",
+    "home.cs.postit2": "sole designer",
+    "home.pill.surfaces": "5 surfaces",
+    "home.pill.scripts": "3 scripts",
+    "home.pill.live": "Live in stores",
+
+    "home.sides.kicker": "Other sides",
+    "home.sides.note": "Smaller in scope, larger in number.",
+    "home.sides.coding": "Coding side",
+    "home.sides.coding.sub": "cacataxi.com · this portfolio · Flutter",
+    "home.sides.motion": "Motion side",
+    "home.sides.motion.sub": "reels & experiments",
+    "home.sides.motion.note": "coming soon",
+    "home.sides.earlier": "Earlier work",
+    "home.sides.earlier.sub": "WordPress · social · advertising · 2018–2023",
+
+    "home.about.hello": "Hello.",
+    "home.about.location": "Currently · Taiwan",
+    "home.about.p1":
+      "I'm Jared, a Malaysian designer based in Taiwan. I spent the last 19 months as the sole designer at CaCa, a ride-hailing startup serving Yangon — the case study above is the long version of what that meant. Before CaCa: a mix of mobile design, WordPress, motion, and social work, mostly freelance. I'm currently looking for what's next.",
+    "home.about.how": "How I can help",
+    "home.about.p2":
+      "I work best in product roles where design owns the surface end-to-end — flows, system, copy, and (sometimes) the build. I'm strongest when there's a real constraint to design against: a hard market, a small team, a non-obvious user, a script that doesn't have ready-made type.",
+    "home.about.worked": "Worked with",
+    "home.about.tbd": "earlier clients TBD",
+
+    "home.connect.title": "Let's Connect",
+    "home.link.email": "Email",
+    "home.link.linkedin": "LinkedIn",
+    "home.link.resume": "Resume",
+    "home.link.archive": "Archive",
+
+    // ── /also side folders (papers inside each mini folder) ──
+    "also.coding.kicker": "Other sides · C /",
+    "also.coding.title": "Coding side",
+    "also.coding.body":
+      "cacataxi.com (Laravel + Livewire, shipped in one AI-assisted session), this portfolio, and Flutter experiments.",
+    "also.motion.kicker": "Other sides · M /",
+    "also.motion.title": "Motion side",
+    "also.motion.body": "Reels and experiments — the reel is being assembled.",
+    "also.earlier.kicker": "Other sides · E /",
+    "also.earlier.title": "Earlier work",
+    "also.earlier.body":
+      "WordPress, social, advertising, freelance — 2018–2023.",
+    "also.wip.kicker": "Status",
+    "also.wip.title": "Being assembled",
+    "also.wip.body":
+      "Content lands on these papers as the build progresses. The folder's real — the pages are still being written.",
+    "also.back": "← Back home",
   },
   zh: {
     "nav.work": "作品",
@@ -152,6 +216,69 @@ const dictionaries: Record<Lang, Dict> = {
       "在艱難市場、小團隊中，端到端主導介面——這就是我想要做更多的工作。",
     "cs.closing.cta": "與我聯繫",
     "cs.back": "← 回首頁",
+
+    // ── Homepage ──
+    "home.hero.title": "一位設計師，五個介面，三種文字。",
+    "home.hero.sub":
+      "在仰光叫車新創擔任唯一設計師的 19 個月——我也寫程式、做動態，偶爾用 WordPress。",
+    "home.hero.cta": "與我聯繫",
+    "home.hero.status": "開放工作機會",
+
+    "home.cs.kicker": "案例研究",
+    "home.cs.note":
+      "先說一聲——這篇很長，約 12 分鐘。唯一設計師、五個介面、三種文字、仰光。",
+    "home.cs.title": "仰光的叫車平台",
+    "home.cs.dates": "唯一設計師 · 2023 年 7 月 → 2025 年 2 月",
+    "home.cs.read": "12 分鐘",
+    "home.cs.aria": "CaCa 案例研究，約 12 分鐘",
+    "home.cs.postit1": "19 個月",
+    "home.cs.postit2": "唯一設計師",
+    "home.pill.surfaces": "5 個介面",
+    "home.pill.scripts": "3 種文字",
+    "home.pill.live": "已上架",
+
+    "home.sides.kicker": "其他面向",
+    "home.sides.note": "規模較小，數量更多。",
+    "home.sides.coding": "程式面",
+    "home.sides.coding.sub": "cacataxi.com · 這個作品集 · Flutter",
+    "home.sides.motion": "動態面",
+    "home.sides.motion.sub": "Reel 與實驗",
+    "home.sides.motion.note": "即將推出",
+    "home.sides.earlier": "早期作品",
+    "home.sides.earlier.sub": "WordPress · 社群 · 廣告 · 2018–2023",
+
+    "home.about.hello": "你好。",
+    "home.about.location": "現居 · 台灣",
+    "home.about.p1":
+      "我是 Jared，來自馬來西亞、現居台灣的設計師。過去 19 個月，我在服務仰光的叫車新創 CaCa 擔任唯一設計師——上面的案例研究就是這段經歷的完整版。在 CaCa 之前：行動設計、WordPress、動態與社群的混合經歷，多為接案。目前正在尋找下一段旅程。",
+    "home.about.how": "我能幫上什麼",
+    "home.about.p2":
+      "我最適合讓設計端到端主導介面的產品職位——流程、系統、文案，有時連開發也一起。當有真實的限制可以對抗時，我發揮得最好：艱難的市場、小團隊、非典型的使用者、沒有現成字型的文字系統。",
+    "home.about.worked": "合作過",
+    "home.about.tbd": "更早的客戶待補",
+
+    "home.connect.title": "聯繫方式",
+    "home.link.email": "電子郵件",
+    "home.link.linkedin": "LinkedIn",
+    "home.link.resume": "履歷",
+    "home.link.archive": "作品庫",
+
+    // ── /also side folders ──
+    "also.coding.kicker": "其他面向 · C /",
+    "also.coding.title": "程式面",
+    "also.coding.body":
+      "cacataxi.com（Laravel + Livewire，一次 AI 協作完成上線）、這個作品集，以及 Flutter 實驗。",
+    "also.motion.kicker": "其他面向 · M /",
+    "also.motion.title": "動態面",
+    "also.motion.body": "Reel 與實驗——展示影片正在整理中。",
+    "also.earlier.kicker": "其他面向 · E /",
+    "also.earlier.title": "早期作品",
+    "also.earlier.body": "WordPress、社群、廣告、接案——2018 至 2023。",
+    "also.wip.kicker": "狀態",
+    "also.wip.title": "整理中",
+    "also.wip.body":
+      "內容會隨著開發進度陸續放上這些紙張。資料夾是真的——頁面還在書寫中。",
+    "also.back": "← 回首頁",
   },
   my: {
     "s0.kicker": "Jared Song · ဒီဇိုင်နာ",

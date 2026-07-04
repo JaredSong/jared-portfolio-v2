@@ -4,6 +4,11 @@
    independent of the OS preference. `dark:` utilities key off this. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* "open" — the folder tableau's revealed state. Fires on hover (desktop),
+   keyboard focus, or `data-open="true"` (set by CacaFolder via
+   IntersectionObserver on touch devices, where hover doesn't exist). */
+@custom-variant open (&:is(:where(.group:hover, .group:focus-visible, .group[data-open="true"]) *));
+
 :root {
   --background: #fafaf8;
   --foreground: #1a1a18;
@@ -20,7 +25,6 @@
     rgba(240, 239, 237, 1) 0%,
     rgba(249, 250, 251, 1) 100%
   );
-  --desk-dots: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.035'%3E%3Ccircle cx='7' cy='7' r='1.1'/%3E%3Ccircle cx='27' cy='27' r='1.1'/%3E%3Ccircle cx='47' cy='47' r='1.1'/%3E%3C/g%3E%3C/svg%3E");
   /* PLACEHOLDER palette — replace with exact CaCa tokens from Figma extract */
   --caca-deep: #123f22;
   --caca-green: #1f9d4d;
@@ -41,7 +45,6 @@
     rgba(17, 17, 17, 1) 0%,
     rgba(24, 24, 24, 1) 100%
   );
-  --desk-dots: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='7' cy='7' r='1.1'/%3E%3Ccircle cx='27' cy='27' r='1.1'/%3E%3Ccircle cx='47' cy='47' r='1.1'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 @theme inline {
@@ -55,18 +58,215 @@
   --font-hand: var(--font-caveat);
 }
 
-body {
-  /* Textured "desk": dotted texture over a diagonal gradient, fixed so the
-     sheets scroll over a stable surface. */
+/* Desk gradient lives on html so the grain pseudos (body::before/::after,
+   z-index -1) can paint ABOVE it but BELOW all page content. */
+html {
   background-color: var(--background);
-  background-image: var(--desk-dots), var(--desk-gradient);
+  background-image: var(--desk-gradient);
   background-attachment: fixed;
+  transition: background-color 0.4s ease;
+}
+
+body {
   color: var(--foreground);
   /* Myanmar fonts appended so Burmese (မြန်မာ) glyphs render via system
      fallback until we ship a bundled tri-script face. */
   font-family: var(--font-geist-sans), system-ui, "Noto Sans Myanmar",
     "Myanmar Text", "Padauk", sans-serif;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  transition: color 0.4s ease;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Film grain desk texture — ported from v1's .grain-overlay
+   (../jared-portfolio globals.css). Two counter-jittering dot
+   layers. v1 rendered it OVER the page; here it's the BACKGROUND:
+   fixed pseudos at z-index -1 sit above the html desk gradient but
+   under every piece of content — visible on the homepage bg and on
+   the desk around/behind the papers, never on top of them.
+   ───────────────────────────────────────────────────────────── */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.25;
+}
+body::before {
+  background:
+    radial-gradient(circle, rgba(0, 0, 0, 0.15) 0.5px, transparent 0.5px),
+    radial-gradient(circle, rgba(0, 0, 0, 0.1) 0.5px, transparent 0.5px);
+  background-size: 2px 2px, 3px 3px;
+  background-position: 0 0, 1.5px 1.5px;
+  animation: grain-anim 0.2s steps(1) infinite;
+}
+body::after {
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.12) 0.5px,
+    transparent 0.5px
+  );
+  background-size: 4px 4px;
+  background-position: 2px 2px;
+  animation: grain-anim-2 0.3s steps(1) infinite reverse;
+}
+:root.dark body::before {
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.12) 0.5px, transparent 0.5px),
+    radial-gradient(circle, rgba(255, 255, 255, 0.08) 0.5px, transparent 0.5px);
+  background-size: 2px 2px, 3px 3px;
+  background-position: 0 0, 1.5px 1.5px;
+  opacity: 0.4;
+}
+:root.dark body::after {
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0.5px,
+    transparent 0.5px
+  );
+  background-size: 4px 4px;
+  background-position: 2px 2px;
+  opacity: 0.4;
+}
+@keyframes grain-anim {
+  0% {
+    background-position: 0 0, 1.5px 1.5px;
+  }
+  100% {
+    background-position: -2px -2px, -0.5px -0.5px;
+  }
+}
+@keyframes grain-anim-2 {
+  0% {
+    background-position: 2px 2px;
+  }
+  100% {
+    background-position: -2px -2px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Decorative wiggling gradient wash — v1's .grain-texture +
+   movingWiggle blob (rendered in layout.tsx, top of every page).
+   v1's light-mode tint was near-invisible ("not obs") — deepened
+   for v2 so the wash reads in light mode too. Dark = v1 verbatim.
+   ───────────────────────────────────────────────────────────── */
+.grain-texture {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(125, 211, 240, 0.75) 0%,
+    rgba(167, 222, 255, 0.55) 50%,
+    rgba(173, 216, 253, 0.4) 100%
+  );
+  opacity: 0.9;
+}
+.grain-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+  opacity: 0.4;
+  animation: grain-anim-light 8s steps(10) infinite;
+}
+.grain-texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter2'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.75' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter2)' opacity='0.3'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.5;
+  animation: grain-anim-light2 6s steps(8) infinite reverse;
+}
+:root.dark .grain-texture {
+  background: linear-gradient(
+    135deg,
+    rgba(100, 116, 139, 0.1) 0%,
+    rgba(30, 41, 59, 0.15) 50%,
+    rgba(100, 116, 139, 0.1) 100%
+  );
+}
+:root.dark .grain-texture::before {
+  opacity: 0.4;
+  mix-blend-mode: screen;
+}
+:root.dark .grain-texture::after {
+  opacity: 0.3;
+  mix-blend-mode: soft-light;
+}
+@keyframes grain-anim-light {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  10% {
+    transform: translate(-5%, -10%) rotate(1deg);
+  }
+  20% {
+    transform: translate(-15%, 5%) rotate(-1deg);
+  }
+  30% {
+    transform: translate(7%, -25%) rotate(0.5deg);
+  }
+  40% {
+    transform: translate(-5%, 25%) rotate(-0.5deg);
+  }
+  50% {
+    transform: translate(-15%, 10%) rotate(1deg);
+  }
+  60% {
+    transform: translate(15%, 0%) rotate(-1deg);
+  }
+  70% {
+    transform: translate(0%, 15%) rotate(0.5deg);
+  }
+  80% {
+    transform: translate(3%, 35%) rotate(-0.5deg);
+  }
+  90% {
+    transform: translate(-10%, 10%) rotate(1deg);
+  }
+}
+@keyframes grain-anim-light2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  12.5% {
+    transform: translate(-2%, -3%) scale(1.01);
+  }
+  25% {
+    transform: translate(-8%, 2%) scale(0.99);
+  }
+  37.5% {
+    transform: translate(3%, -12%) scale(1.02);
+  }
+  50% {
+    transform: translate(-2%, 12%) scale(0.98);
+  }
+  62.5% {
+    transform: translate(-8%, 5%) scale(1.01);
+  }
+  75% {
+    transform: translate(8%, 0%) scale(0.99);
+  }
+  87.5% {
+    transform: translate(0%, 8%) scale(1.01);
+  }
+}
+@keyframes movingWiggle {
+  0%,
+  100% {
+    transform: rotate(-5deg) skew(0, -10deg);
+  }
+  50% {
+    transform: rotate(2deg) skew(0, -5deg);
+  }
+}
+.animate-moving-wiggle {
+  animation: movingWiggle 10s ease infinite;
 }
 
 /* hide scrollbars on horizontal strips while keeping them scrollable */
@@ -161,7 +361,16 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html,
   body {
     transition: none;
+  }
+  /* grain + wash freeze to static textures */
+  body::before,
+  body::after,
+  .grain-texture::before,
+  .grain-texture::after,
+  .animate-moving-wiggle {
+    animation: none;
   }
 }

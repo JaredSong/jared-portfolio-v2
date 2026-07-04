@@ -1,60 +1,64 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import PaperStack, { type Paper } from "@/components/PaperStack";
+import MiniFolder, { type MiniFolderData } from "@/components/home/MiniFolder";
+import { useI18n } from "@/lib/i18n";
 
 /**
- * "Other sides" — Tumulte-style sliding paper stack (spec: homepage.md §5).
- * Placeholder build: papers are CSS gradients; final version gets
- * grain-textured gradient art.
+ * "Other sides" — a shelf of three smaller folders, same desk grammar as the
+ * featured CaCa folder: every folder opens to papers (/also/[side] renders
+ * a PaperSheets stack). Quieter hover than CaCa by design.
  */
 
-const papers: (Paper & { href: string })[] = [
-  {
-    id: "coding",
-    label: "Coding side",
-    href: "/also/coding",
-    sub: "cacataxi.com · this portfolio · Flutter",
-    gradient: "bg-gradient-to-br from-sky-950 via-teal-800 to-cyan-500",
-    mark: "C /",
-  },
-  {
-    id: "motion",
-    label: "Motion side",
-    href: "/also/motion",
-    sub: "reels & experiments",
-    gradient: "bg-gradient-to-br from-rose-900 via-orange-600 to-amber-400",
-    mark: "M /",
-    note: "coming soon",
-  },
-  {
-    id: "earlier",
-    label: "Earlier work",
-    href: "/also/earlier-work",
-    sub: "WordPress · social · advertising · 2018–2023",
-    gradient: "bg-gradient-to-br from-stone-500 via-stone-400 to-amber-200",
-    mark: "E /",
-  },
-];
-
 export default function OtherSides() {
-  const router = useRouter();
+  const { t } = useI18n();
+
+  const folders: MiniFolderData[] = [
+    // v1-style pastels (portfolioStructure.ts gradientFrom/To): pale same-hue
+    // washes + dark text, not saturated gradients
+    {
+      id: "coding",
+      href: "/also/coding",
+      label: t("home.sides.coding"),
+      sub: t("home.sides.coding.sub"),
+      mark: "C /",
+      gradient: "bg-gradient-to-br from-[#e5f9f8] to-[#ccf2f0]",
+      tab: "bg-gradient-to-r from-[#ccf2f0] to-[#a9e6e2]",
+    },
+    {
+      id: "motion",
+      href: "/also/motion",
+      label: t("home.sides.motion"),
+      sub: t("home.sides.motion.sub"),
+      mark: "M /",
+      note: t("home.sides.motion.note"),
+      gradient: "bg-gradient-to-br from-[#ffedd5] to-[#fed7aa]",
+      tab: "bg-gradient-to-r from-[#fed7aa] to-[#fdc98c]",
+    },
+    {
+      id: "earlier",
+      href: "/also/earlier-work",
+      label: t("home.sides.earlier"),
+      sub: t("home.sides.earlier.sub"),
+      mark: "E /",
+      gradient: "bg-gradient-to-br from-[#f5f5f4] to-[#e7e5e4]",
+      tab: "bg-gradient-to-r from-[#e7e5e4] to-[#d9d6d4]",
+    },
+  ];
 
   return (
     <section className="mx-auto w-full max-w-4xl px-6 pb-40">
-      <p className="text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
-        Other sides
+      <p className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
+        {t("home.sides.kicker")}
       </p>
-      <p className="mt-2 text-sm text-neutral-600 dark:text-neutral-300">
-        Smaller in scope, larger in number.
+      <p className="mt-3 max-w-2xl text-base leading-relaxed text-neutral-600 dark:text-neutral-300 md:text-lg">
+        {t("home.sides.note")}
       </p>
 
-      <PaperStack
-        className="mt-12"
-        papers={papers}
-        onOpen={(p) => router.push((p as Paper & { href: string }).href)}
-        hint="click the front paper to open"
-      />
+      <div className="mt-14 grid gap-x-6 gap-y-12 sm:grid-cols-2 md:grid-cols-3">
+        {folders.map((folder) => (
+          <MiniFolder key={folder.id} folder={folder} />
+        ))}
+      </div>
     </section>
   );
 }

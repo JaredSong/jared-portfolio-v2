@@ -39,9 +39,21 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
+      {/* overflow-x-clip: the decorative wash below is 120–150rem wide; clip
+          (not hidden — that would break position:sticky) stops it stretching
+          the document sideways */}
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${caveat.variable} overflow-x-clip antialiased`}
       >
+        {/* Decorative wiggling gradient wash at the top of every page —
+            carried over from v1 (MainPage.tsx). Sits behind all content
+            (-z-10), under the film-grain pseudos (-z-[1]). */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute start-1/2 top-0 -z-10 aspect-[2/1] w-[100vw] origin-bottom -translate-x-1/2 overflow-hidden sm:w-[120rem] md:top-[-9%] md:-translate-x-1/3 lg:w-[150rem] lg:-translate-x-2/3"
+        >
+          <div className="grain-texture animate-moving-wiggle h-1/2 w-full origin-top blur-[30px] will-change-transform md:blur-[50px] dark:blur-[40px] dark:md:blur-[60px]" />
+        </div>
         <LanguageProvider>
           <SiteHeader />
           {children}
