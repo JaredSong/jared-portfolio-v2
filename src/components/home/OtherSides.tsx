@@ -26,6 +26,11 @@ export default function OtherSides() {
       note: t("home.sides.eagle.note"),
       gradient: "bg-gradient-to-br from-[#dbeafe] to-[#bfdbfe]",
       tab: "bg-gradient-to-r from-[#bfdbfe] to-[#a5cdf7]",
+      stickers: [
+        { src: "/stickers/eagle/hardhat.svg", cls: "-top-10 left-[22%] w-20 rotate-[5deg]", delay: "open:delay-[0ms]" },
+        { src: "/stickers/eagle/payapp.svg", cls: "top-10 -left-4 w-14 -rotate-[10deg]", delay: "open:delay-[60ms]" },
+        { src: "/stickers/eagle/camera.svg", cls: "-bottom-9 right-8 w-20 -rotate-[7deg]", delay: "open:delay-[120ms]" },
+      ],
     },
     {
       id: "wheelcake",
@@ -35,6 +40,12 @@ export default function OtherSides() {
       mark: "W /",
       gradient: "bg-gradient-to-br from-[#ffedd5] to-[#fed7aa]",
       tab: "bg-gradient-to-r from-[#fed7aa] to-[#fdc98c]",
+      stickers: [
+        { src: "/stickers/wheelcake/hello.png", cls: "-top-10 left-10 w-20 -rotate-[8deg]", delay: "open:delay-[0ms]" },
+        { src: "/stickers/wheelcake/oreo.png", cls: "top-8 -right-5 w-14 rotate-[14deg]", delay: "open:delay-[60ms]" },
+        { src: "/stickers/wheelcake/thaitea.png", cls: "-bottom-8 left-[30%] w-12 -rotate-[4deg]", delay: "open:delay-[120ms]" },
+        { src: "/stickers/wheelcake/sunglasses.png", cls: "bottom-6 -left-5 w-16 rotate-[6deg]", delay: "open:delay-[180ms]" },
+      ],
     },
     {
       id: "earlier",

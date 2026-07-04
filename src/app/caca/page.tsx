@@ -45,21 +45,49 @@ export default function CacaCaseStudy() {
     accent: accent ? "text-caca-green" : undefined,
   }));
 
-  // lede: stat pills
-  sheets[0].footer = (
-    <div className="flex flex-wrap gap-2">
-      {["5 surfaces", "3 scripts", "19 months", "Live in stores"].map(
-        (pill) => (
-          <span
-            key={pill}
-            className="rounded-full border border-[var(--paper-edge)] px-3 py-1 text-xs text-neutral-500 dark:text-neutral-400"
-          >
-            {pill}
-          </span>
-        ),
-      )}
+  // proof links — "live in stores" is a claim; these are the receipts
+  const proofLinks = [
+    { label: "App Store ↗", href: "https://apps.apple.com/app/caca-taxi/id6466410175" },
+    { label: "Google Play ↗", href: "https://play.google.com/store/apps/details?id=com.myan.caca" },
+    { label: "cacataxi.com ↗", href: "https://www.cacataxi.com" },
+  ];
+  const proofRow = (
+    <div className="flex flex-wrap gap-x-5 gap-y-2">
+      {proofLinks.map((l) => (
+        <a
+          key={l.href}
+          href={l.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-sm font-medium text-caca-green underline-offset-4 hover:underline"
+        >
+          {l.label}
+        </a>
+      ))}
     </div>
   );
+
+  // lede: stat pills + receipts
+  sheets[0].footer = (
+    <div className="space-y-5">
+      <div className="flex flex-wrap gap-2">
+        {["5 surfaces", "3 scripts", "19 months", "Live in stores"].map(
+          (pill) => (
+            <span
+              key={pill}
+              className="rounded-full border border-[var(--paper-edge)] px-3 py-1 text-xs text-neutral-500 dark:text-neutral-400"
+            >
+              {pill}
+            </span>
+          ),
+        )}
+      </div>
+      {proofRow}
+    </div>
+  );
+
+  // outcome: receipts again, where the claim is made
+  sheets[13].footer = proofRow;
 
   // closing: CTA
   sheets[sheets.length - 1].footer = (

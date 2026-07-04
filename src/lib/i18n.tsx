@@ -71,7 +71,7 @@ const dictionaries: Record<Lang, Dict> = {
     "cs.why.kicker": "01 · Why CaCa exists",
     "cs.why.title": "You can't copy Uber in Yangon",
     "cs.why.body":
-      "CaCa means 'taxi' in the local dialect. It grew out of an earlier concept called MyanGO into an attempt at something the city didn't have: a complete ride-hailing ecosystem. The catch — global patterns don't survive here. Payments are cash, networks drop, phones are low-end Android, and the interface has to hold three writing systems that share nothing.",
+      "CaCa means 'taxi' in the local dialect. The project started as MyanGO — renamed after the name clashed with an already-registered company — and set out to build something the city didn't have: a complete ride-hailing ecosystem. The catch — global patterns don't survive here. Payments run cash-first, networks drop, phones are low-end Android, and the interface has to hold three writing systems that share nothing.",
     "cs.role.kicker": "02 · My role",
     "cs.role.title": "The only designer on the team",
     "cs.role.body":
@@ -91,7 +91,7 @@ const dictionaries: Record<Lang, Dict> = {
     "cs.driver.kicker": "05b · Driver app",
     "cs.driver.title": "Drivers don't browse — they react",
     "cs.driver.body":
-      "The driver app runs dark, and every screen answers one question: what happens next? Job offer → accept → pickup → trip → cash. Each state had to survive sunlight, motion, and a three-second decision window.",
+      "The driver app runs dark, and every screen answers one question: what happens next? Job offer → accept → pickup → trip → payment. Each state had to survive sunlight, motion, and a three-second decision window.",
     "cs.delivery.kicker": "05c · Delivery",
     "cs.delivery.title": "Same loop, different cargo",
     "cs.delivery.body":
@@ -103,7 +103,7 @@ const dictionaries: Record<Lang, Dict> = {
     "cs.website.kicker": "05e · Marketing site",
     "cs.website.title": "cacataxi.com — designed and built",
     "cs.website.body":
-      "The public face: service, trust, and identity, responsive across devices. I designed it and shipped the build myself — the current version came together in a single AI-assisted session on Laravel + Livewire.",
+      "The public face: service, trust, and identity, responsive across devices. I designed and developed it myself, end to end.",
     "cs.system.kicker": "06 · Design system",
     "cs.system.title": "One language across five surfaces",
     "cs.system.body":
@@ -115,11 +115,11 @@ const dictionaries: Record<Lang, Dict> = {
     "cs.local.kicker": "08 · Local context",
     "cs.local.title": "Designed for Yangon, not for app stores",
     "cs.local.body":
-      "Cash-first flows over card-first assumptions. Tri-script interfaces over English-only. States that assume the network will drop. None of these were compromises — they were the brief. The global playbook was the thing to resist.",
+      "Cash-first flows, with cashless built on a KBZPay partnership — CaCa was the first ride-hailing platform in Myanmar to integrate the wallet people actually use, rather than card rails. Tri-script interfaces over English-only. States that assume the network will drop. None of these were compromises — they were the brief. The global playbook was the thing to resist.",
     "cs.outcome.kicker": "09 · Outcome",
     "cs.outcome.title": "Shipped, and still running",
     "cs.outcome.body":
-      "A four-month MVP grew into a full platform: passenger and driver apps live in stores, delivery flows, an 18-module backend, and a public site — a product foundation that still serves Yangon today.",
+      "A four-month MVP grew into a full platform: passenger and driver apps live in stores, delivery flows, an 18-module backend, a first-in-market KBZPay partnership, and a public site — a product foundation that still serves Yangon today.",
     "cs.closing.kicker": "10 · Reflection",
     "cs.closing.title": "Start with the workflow, not the screen",
     "cs.closing.body":
@@ -132,7 +132,7 @@ const dictionaries: Record<Lang, Dict> = {
     // recruiter-legible job title in the sub.
     "home.hero.title": "Messy workflows → clear product experiences.",
     "home.hero.sub":
-      "I'm Jared Song, a product-minded UI/UX designer turning complex operations, documents, and multilingual interfaces into usable web and mobile products.",
+      "I'm a UI/UX designer who turns complex operations, documents, and multilingual interfaces into usable web and mobile products.",
     "home.hero.cta": "Get in Touch",
     "home.hero.status": "Open to opportunities",
 
@@ -158,14 +158,14 @@ const dictionaries: Record<Lang, Dict> = {
     "home.sides.eagle.sub": "role-based review · evidence · approvals",
     "home.sides.eagle.note": "concise case",
     "home.sides.wheelcake": "Wheelcake",
-    "home.sides.wheelcake.sub": "a personal food-brand concept",
+    "home.sides.wheelcake.sub": "a wheel-cake brand I founded & ran",
     "home.sides.earlier": "Earlier work",
     "home.sides.earlier.sub": "WordPress · social · advertising · 2018–2023",
 
     "home.about.hello": "Hello.",
     "home.about.location": "Currently · Taiwan",
     "home.about.p1":
-      "I'm Jared Song, a product-minded UI/UX designer from Malaysia, based in Taiwan — 8+ years across digital products, websites, CMS, e-commerce, motion, and multimedia design. The flagship case above is the long version of the most recent chapter.",
+      "I'm Jared Song, a Malaysian UI/UX designer based in Taiwan. For most of the last decade I've worked on products where the hard part wasn't making screens look good — it was making complicated workflows usable for real people.",
     "home.about.how": "How I work",
     "home.about.p2":
       "I'm strongest when a product has messy constraints: multiple user roles, unclear operations, localization, handoff complexity, or workflows that need to become easier for real people to use.",
@@ -184,8 +184,8 @@ const dictionaries: Record<Lang, Dict> = {
     "home.cap.i4.d": "reels, brand, advertising",
     "home.cap.i5.t": "Web & CMS",
     "home.cap.i5.d": "WordPress, e-commerce",
-    "home.cap.i6.t": "Code",
-    "home.cap.i6.d": "Next.js · Flutter · Laravel, AI-assisted",
+    "home.cap.i6.t": "Implementation-aware design",
+    "home.cap.i6.d": "HTML/CSS · CMS · front-end handoff · lightweight prototypes",
 
     "home.connect.title": "Let's Connect",
     "home.link.email": "Email",
@@ -194,32 +194,52 @@ const dictionaries: Record<Lang, Dict> = {
     "home.link.archive": "Archive",
 
     // ── /also side folders (papers inside each mini folder) ──
-    // Eagle case is EMPLOYER-SAFE by design: generic naming, role-based flow
-    // descriptions only, no proprietary visuals or numbers.
+    // Payment-review case: NO employer name anywhere in public copy, and no
+    // work detail until explicitly cleared — workflow-name + status only.
     "also.eagle.kicker": "Concise case · P /",
     "also.eagle.title": "Construction payment review workflow",
     "also.eagle.body":
-      "Eagle AI is a construction payment and evidence review workflow designed to help teams move from document intake to owner approval with clearer review states.",
-    "also.eagle.s2.kicker": "Roles & flows",
-    "also.eagle.s2.title": "Five roles, one review path",
-    "also.eagle.s2.body":
-      "I worked on web and mobile product flows for role-based users including subcontractors, project managers, inspectors, owners, and admins. The design focused on document intake, line-item review, evidence collection, certification decisions, correction requests, owner approval packages, and audit trail visibility.",
-    "also.eagle.s3.kicker": "The design challenge",
-    "also.eagle.s3.title": "AI is the reader, not the source",
-    "also.eagle.s3.body":
-      "A key design challenge was separating what the system could read or suggest from what humans still needed to verify. The workflow was structured around practical AI assistance: reading documents, matching line items, flagging exceptions, and helping reviewers focus on unresolved decisions.",
+      "A concise case on document intake, evidence collection, review states, correction requests, and approval flows — details in conversation.",
+    // Wheelcake: real brand Jared FOUNDED AND OPERATED in Kaohsiung; the
+    // business closed — stated honestly, framed as the hands-on product
+    // lesson it was. Never call it "live".
     "also.wheelcake.kicker": "Personal case · W /",
-    "also.wheelcake.title": "Wheelcake",
+    "also.wheelcake.title": "What's Wheelcake 微吃車輪餅",
     "also.wheelcake.body":
-      "A personal food-brand concept exploring identity, storytelling, and customer-facing digital touchpoints.",
+      "A wheel-cake brand I founded and operated in Kaohsiung — name, identity, menu, pricing, packaging, and the daily workflow behind the counter. The brand eventually closed; the lessons didn't.",
+    "also.wheelcake.visit": "whatswheelcake.com ↗",
+    "wc.why.kicker": "01 · Why",
+    "wc.why.title": "I wanted to make something you could hold",
+    "wc.why.body":
+      "After years of digital design, I wanted to build something physical — something people could taste and react to immediately. The wheel cake was the right format: familiar, affordable, emotionally warm. The interesting problem was making a simple traditional snack feel fresh and worth remembering.",
+    "wc.challenge.kicker": "02 · The challenge",
+    "wc.challenge.title": "A brand around a product that exists everywhere",
+    "wc.challenge.body":
+      "Everyone already knows what a wheel cake is. The brand needed a reason to stand out without losing the comfort of the original. How should it feel? How many flavors can one person actually operate? How do customers decide fast? Every question was brand and operations at once.",
+    "wc.brand.kicker": "03 · Brand",
+    "wc.brand.title": "Curious, conversational, easy to remember",
+    "wc.brand.body":
+      "'What's Wheelcake' is a question on purpose — casual, slightly playful, not too traditional, not too premium. The brand had to make people comfortable asking, trying flavors, and remembering it through one simple phrase.",
+    "wc.menu.kicker": "04 · Menu as product",
+    "wc.menu.title": "A menu is a feature set",
+    "wc.menu.body":
+      "Every flavor was evaluated like a feature: taste, prep time, ingredient cost, storage, cooking consistency, customer interest. Some ideas were attractive but impractical; some easy but forgettable. The final menu balanced creativity against what one pair of hands could deliver consistently on a busy day.",
+    "wc.ops.kicker": "05 · Operations as design",
+    "wc.ops.title": "The workflow behind the counter is the design",
+    "wc.ops.body":
+      "A beautiful brand fails if the workflow can't support real demand. Prep time, storage, cooking flow, cleaning, inventory, cost control, physical space — running the stand daily taught me that a good idea needs a system behind it, or it doesn't survive contact with a queue.",
+    "wc.close.kicker": "06 · Reflection",
+    "wc.close.title": "Experience attracts; the system decides if it lasts",
+    "wc.close.body":
+      "The brand eventually closed — and it was still one of the most hands-on product lessons I've had: real customers, real time pressure, real cost, immediate reactions. Digital design has users, flows, and edge cases; a food stand has all three, in person, at the 6pm rush. Every product needs both a good experience and a workable system.",
     "also.earlier.kicker": "Archive · E /",
     "also.earlier.title": "Earlier work",
     "also.earlier.body":
       "WordPress, social, advertising, freelance — 2018–2023.",
     "also.wip.kicker": "Status",
-    "also.wip.title": "Being assembled",
+    "also.wip.title": "Summary here, details in conversation",
     "also.wip.body":
-      "Content lands on these papers as the build progresses. The folder's real — the pages are still being written.",
+      "This is the deliberate short version. The full case is in progress — happy to walk through the rest in person.",
     "also.back": "← Back home",
   },
   zh: {
@@ -229,7 +249,7 @@ const dictionaries: Record<Lang, Dict> = {
     "nav.menu": "開啟選單",
     "nav.close": "關閉選單",
     "nav.theme": "切換深色模式",
-    "s0.kicker": "宋家駿 · 產品設計師",
+    "s0.kicker": "Jared Song · 產品設計師",
     "s0.title": "在仰光叫車平台擔任唯一設計師的 19 個月。",
     "s0.body":
       "五個介面，三種文字。向下滾動翻閱——每一段都是一張疊上前一張的紙。",
@@ -259,7 +279,7 @@ const dictionaries: Record<Lang, Dict> = {
     "cs.why.kicker": "01 · 為何是 CaCa",
     "cs.why.title": "在仰光，你抄不了 Uber",
     "cs.why.body":
-      "CaCa 在當地方言裡就是「計程車」。它從早期概念 MyanGO 演變而來，要做出這座城市還沒有的東西：完整的叫車生態系。難就難在——全球的套路在這裡行不通。付款靠現金、網路會斷、手機多是低階 Android，介面還得同時容納三種毫無共通點的文字系統。",
+      "CaCa 在當地方言裡就是「計程車」。專案原名 MyanGO，因為與已註冊的公司撞名而改名——目標是做出這座城市還沒有的東西：完整的叫車生態系。難就難在——全球的套路在這裡行不通。付款以現金為主、網路會斷、手機多是低階 Android，介面還得同時容納三種毫無共通點的文字系統。",
     "cs.role.kicker": "02 · 我的角色",
     "cs.role.title": "團隊裡唯一的設計師",
     "cs.role.body":
@@ -279,7 +299,7 @@ const dictionaries: Record<Lang, Dict> = {
     "cs.driver.kicker": "05b · 司機端",
     "cs.driver.title": "司機不瀏覽——他們只反應",
     "cs.driver.body":
-      "司機端預設深色，每個畫面只回答一個問題：接下來呢？接單通知 → 接受 → 接客 → 行程 → 收現金。每個狀態都得撐過烈日、顛簸，和三秒鐘的決策窗口。",
+      "司機端預設深色，每個畫面只回答一個問題：接下來呢？接單通知 → 接受 → 接客 → 行程 → 收款。每個狀態都得撐過烈日、顛簸，和三秒鐘的決策窗口。",
     "cs.delivery.kicker": "05c · 外送",
     "cs.delivery.title": "同一條迴圈，不同的貨",
     "cs.delivery.body":
@@ -291,7 +311,7 @@ const dictionaries: Record<Lang, Dict> = {
     "cs.website.kicker": "05e · 行銷網站",
     "cs.website.title": "cacataxi.com——從設計到上線",
     "cs.website.body":
-      "對外的門面：服務、信任與識別，跨裝置響應式。我自己設計、自己把它做出來——現行版本在一次 AI 協作中以 Laravel + Livewire 完成。",
+      "對外的門面：服務、信任與識別，跨裝置響應式。從設計到開發上線，都由我親手完成。",
     "cs.system.kicker": "06 · 設計系統",
     "cs.system.title": "五個介面，一套語言",
     "cs.system.body":
@@ -303,11 +323,11 @@ const dictionaries: Record<Lang, Dict> = {
     "cs.local.kicker": "08 · 在地脈絡",
     "cs.local.title": "為仰光設計，不是為應用商店",
     "cs.local.body":
-      "現金優先，而非預設綁卡。三文字介面，而非只有英文。預設網路會斷的狀態設計。這些都不是妥協——而是題目本身。真正要抵抗的，是那本全球通用的教科書。",
+      "現金優先，而無現金支付則建立在 KBZPay 合作上——CaCa 是緬甸第一個整合這款國民錢包的叫車平台，而非走信用卡路線。三文字介面，而非只有英文。預設網路會斷的狀態設計。這些都不是妥協——而是題目本身。真正要抵抗的，是那本全球通用的教科書。",
     "cs.outcome.kicker": "09 · 成果",
     "cs.outcome.title": "上線了，而且還在跑",
     "cs.outcome.body":
-      "四個月的 MVP 長成完整平台：乘客與司機 App 上架、外送流程、18 模組後台、對外網站——一個至今仍在服務仰光的產品基礎。",
+      "四個月的 MVP 長成完整平台：乘客與司機 App 上架、外送流程、18 模組後台、市場首例的 KBZPay 合作、對外網站——一個至今仍在服務仰光的產品基礎。",
     "cs.closing.kicker": "10 · 反思",
     "cs.closing.title": "從工作流程開始，而不是畫面",
     "cs.closing.body":
@@ -318,7 +338,7 @@ const dictionaries: Record<Lang, Dict> = {
     // ── Homepage ──
     "home.hero.title": "混亂的工作流程 → 清晰的產品體驗。",
     "home.hero.sub":
-      "我是宋家駿 Jared Song，以產品思維出發的 UI/UX 設計師，把複雜的營運、文件與多語介面，變成好用的網頁與行動產品。",
+      "我是一名 UI/UX 設計師，把複雜的營運、文件與多語介面，變成好用的網頁與行動產品。",
     "home.hero.cta": "與我聯繫",
     "home.hero.status": "開放工作機會",
 
@@ -342,14 +362,14 @@ const dictionaries: Record<Lang, Dict> = {
     "home.sides.eagle.sub": "角色化審核 · 證據 · 簽核",
     "home.sides.eagle.note": "精簡案例",
     "home.sides.wheelcake": "Wheelcake",
-    "home.sides.wheelcake.sub": "個人食物品牌概念",
+    "home.sides.wheelcake.sub": "我創立並經營的車輪餅品牌",
     "home.sides.earlier": "早期作品",
     "home.sides.earlier.sub": "WordPress · 社群 · 廣告 · 2018–2023",
 
     "home.about.hello": "你好。",
     "home.about.location": "現居 · 台灣",
     "home.about.p1":
-      "我是宋家駿 Jared Song，來自馬來西亞、現居台灣的產品思維 UI/UX 設計師——累積 8 年以上的數位產品、網站、CMS、電商、動態與多媒體設計經驗。上面的旗艦案例，是最近這段經歷的完整版。",
+      "我是 Jared Song，來自馬來西亞、現居台灣的 UI/UX 設計師。過去近十年，我做的產品裡，最難的從來不是把畫面做漂亮，而是讓複雜的工作流程，對真實的人變得好用。",
     "home.about.how": "我怎麼工作",
     "home.about.p2":
       "當產品充滿混亂的限制時，我發揮得最好：多重使用者角色、未定型的營運、在地化、交接的複雜度，或是需要讓真實的人更容易使用的工作流程。",
@@ -368,8 +388,8 @@ const dictionaries: Record<Lang, Dict> = {
     "home.cap.i4.d": "Reel、品牌、廣告",
     "home.cap.i5.t": "網站與 CMS",
     "home.cap.i5.d": "WordPress、電商",
-    "home.cap.i6.t": "程式",
-    "home.cap.i6.d": "Next.js · Flutter · Laravel，AI 協作",
+    "home.cap.i6.t": "實作意識的設計",
+    "home.cap.i6.d": "HTML/CSS · CMS · 前端交接 · 輕量原型",
 
     "home.connect.title": "聯繫方式",
     "home.link.email": "電子郵件",
@@ -381,26 +401,43 @@ const dictionaries: Record<Lang, Dict> = {
     "also.eagle.kicker": "精簡案例 · P /",
     "also.eagle.title": "工程請款審核流程",
     "also.eagle.body":
-      "Eagle AI 是一套工程請款與證據審核工作流程，協助團隊從文件收件走到業主簽核，讓審核狀態更清晰。",
-    "also.eagle.s2.kicker": "角色與流程",
-    "also.eagle.s2.title": "五種角色，一條審核路徑",
-    "also.eagle.s2.body":
-      "我負責網頁與行動端的角色化產品流程——涵蓋分包商、專案經理、稽查員、業主與管理員。設計聚焦於文件收件、逐項審核、證據蒐集、核付決策、補件要求、業主簽核包與稽核軌跡的可見性。",
-    "also.eagle.s3.kicker": "設計挑戰",
-    "also.eagle.s3.title": "AI 是讀者，不是資料來源",
-    "also.eagle.s3.body":
-      "關鍵的設計挑戰，是把系統能讀取或建議的，與人仍需查核的部分區分開來。工作流程圍繞務實的 AI 協助建構：讀取文件、比對項目、標記例外，讓審核者專注在尚未解決的決策上。",
+      "聚焦文件收件、證據蒐集、審核狀態、補件要求與簽核流程的精簡案例——細節留在面談。",
     "also.wheelcake.kicker": "個人案例 · W /",
-    "also.wheelcake.title": "Wheelcake",
+    "also.wheelcake.title": "What's Wheelcake 微吃車輪餅",
     "also.wheelcake.body":
-      "探索識別、敘事與顧客端數位接觸點的個人食物品牌概念。",
+      "我在高雄創立並親手經營的車輪餅品牌——命名、識別、菜單、定價、包裝，以及櫃檯後的每日工作流程。品牌最終收了，學到的東西沒有。",
+    "also.wheelcake.visit": "whatswheelcake.com ↗",
+    "wc.why.kicker": "01 · 起點",
+    "wc.why.title": "我想做一個拿得起來的東西",
+    "wc.why.body":
+      "做了多年數位設計之後，我想做點實體的——人們可以馬上品嚐、馬上有反應的東西。車輪餅是對的載體：熟悉、平價、帶著溫度。有趣的問題在於：怎麼讓一個簡單的傳統小吃，變得新鮮、值得被記住？",
+    "wc.challenge.kicker": "02 · 挑戰",
+    "wc.challenge.title": "在到處都有的產品上，蓋一個品牌",
+    "wc.challenge.body":
+      "每個人都知道車輪餅是什麼。品牌需要一個突出的理由，又不能失去原本的親切感。它該是什麼感覺？一個人實際上撐得起幾種口味？顧客怎麼快速決定？每個問題都同時是品牌題，也是營運題。",
+    "wc.brand.kicker": "03 · 品牌",
+    "wc.brand.title": "好奇、口語、好記",
+    "wc.brand.body":
+      "「What's Wheelcake／微吃車輪餅」刻意是個問句——輕鬆、帶點玩心，不太傳統、不太高級。品牌要讓人自在地開口問、願意換口味嘗試，然後用一句話記住它。",
+    "wc.menu.kicker": "04 · 菜單即產品",
+    "wc.menu.title": "菜單就是功能清單",
+    "wc.menu.body":
+      "每個口味都像評估一個功能：味道、備料時間、成本、保存、出品穩定度、顧客興趣。有些點子吸引人但不實際；有些容易做卻不難忘。最終的菜單，是創意和一雙手在忙碌時段能穩定交付之間的平衡。",
+    "wc.ops.kicker": "05 · 營運即設計",
+    "wc.ops.title": "櫃檯後的流程，就是設計本身",
+    "wc.ops.body":
+      "品牌再漂亮，工作流程撐不起真實需求就是失敗。備料、保存、烹製動線、清潔、庫存、成本、空間——每天顧攤教會我：好點子背後需要一套系統，否則撐不過一條排隊人龍。",
+    "wc.close.kicker": "06 · 反思",
+    "wc.close.title": "體驗吸引人；系統決定走多遠",
+    "wc.close.body":
+      "品牌最終收了——但它仍是我做過最貼身的產品課：真實的顧客、真實的時間壓力、真實的成本、立即的反應。數位設計有使用者、流程與邊緣案例；一個小吃攤三者都有，而且是面對面、在傍晚六點的尖峰。每個產品都需要好的體驗，加上一套行得通的系統。",
     "also.earlier.kicker": "作品庫 · E /",
     "also.earlier.title": "早期作品",
     "also.earlier.body": "WordPress、社群、廣告、接案——2018 至 2023。",
     "also.wip.kicker": "狀態",
-    "also.wip.title": "整理中",
+    "also.wip.title": "摘要在這裡，細節在面談",
     "also.wip.body":
-      "內容會隨著開發進度陸續放上這些紙張。資料夾是真的——頁面還在書寫中。",
+      "這是刻意保留的精簡版。完整案例整理中——其餘的部分，很樂意當面走一遍。",
     "also.back": "← 回首頁",
   },
   my: {

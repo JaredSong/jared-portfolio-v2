@@ -52,11 +52,20 @@ function LinkedInIcon() {
   );
 }
 
-function ArchiveIcon() {
+function ResumeIcon() {
   return (
-    <svg viewBox="0 0 458 416" fill="currentColor" className="size-5">
-      <path d="M137.86 0.920005C163.43 4.17 178.15 44.23 192.89 61.99L195.67 64.19L359.91 64.59C388.73 66.7 411.5 88.74 414.25 117.38L103.38 117.34C67.1801 119.49 36.1602 140.1 21.9202 173.44L0.160156 248.77V50.19C0.160156 27.76 29.7302 3.21 51.0502 0.920005C78.1302 -1.98 110.24 3.09 137.86 0.920005Z" />
-      <path d="M101.73 149.53L419.78 149.19C441.95 149.92 459.62 168.01 457.2 190.57L406.99 376.39C398.83 398.27 379.23 412.81 355.92 415.03H34.5504C12.7704 412.88 -2.17965 394.58 0.270353 372.79L50.6004 188.08C58.7704 165.94 78.2204 151.82 101.75 149.52L101.73 149.53Z" />
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      className="size-5"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Zm-3 12h6m-6 3h3.75"
+      />
     </svg>
   );
 }
@@ -72,7 +81,7 @@ export default function SiteHeader() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-5 md:pt-6">
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-5 md:pt-6 print:hidden">
       <div className="mx-auto flex w-full max-w-[60.75rem] items-center justify-between">
         <div className="flex shrink-0 items-center gap-3">
           <Link href="/" className={`${pill} p-1`}>
@@ -103,11 +112,11 @@ export default function SiteHeader() {
           </Link>
 
           <Link
-            href="https://archive.jaredsong.com/"
-            aria-label="Archive"
-            className={`${pill} hidden size-10 hover:bg-orange-500 hover:text-white sm:flex`}
+            href="/resume"
+            aria-label="Resume"
+            className={`${pill} hidden size-10 hover:bg-caca-green hover:text-white sm:flex`}
           >
-            <ArchiveIcon />
+            <ResumeIcon />
           </Link>
         </div>
 
@@ -219,11 +228,11 @@ export default function SiteHeader() {
                 <LinkedInIcon />
               </Link>
               <Link
-                href="https://archive.jaredsong.com/"
-                aria-label="Archive"
-                className={`${pill} size-10 hover:bg-orange-500 hover:text-white`}
+                href="/resume"
+                aria-label="Resume"
+                className={`${pill} size-10 hover:bg-caca-green hover:text-white`}
               >
-                <ArchiveIcon />
+                <ResumeIcon />
               </Link>
             </div>
             <button

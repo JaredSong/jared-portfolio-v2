@@ -299,21 +299,22 @@ body::after {
   opacity: 0.08;
 }
 
-/* Punched binder holes down the left margin — makes a sheet read as paper. */
+/* Punched binder holes down the left margin — makes a sheet read as paper.
+   Narrower on mobile: the desktop gutter ate ~15% of a phone screen. */
 .paper-holes {
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 2.75rem;
+  width: 1.9rem;
   pointer-events: none;
   background-image: radial-gradient(
-    circle at 1.35rem 1.7rem,
-    var(--paper-hole) 0 0.3rem,
-    transparent 0.36rem
+    circle at 0.95rem 1.5rem,
+    var(--paper-hole) 0 0.24rem,
+    transparent 0.3rem
   );
   background-repeat: repeat-y;
-  background-size: 100% 3.4rem;
+  background-size: 100% 3rem;
 }
 
 /* Faint red ruled margin line, just inside the holes. */
@@ -321,10 +322,25 @@ body::after {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 3.1rem;
+  left: 2.3rem;
   width: 1px;
   pointer-events: none;
   background: var(--paper-margin);
+}
+
+@media (min-width: 768px) {
+  .paper-holes {
+    width: 2.75rem;
+    background-image: radial-gradient(
+      circle at 1.35rem 1.7rem,
+      var(--paper-hole) 0 0.3rem,
+      transparent 0.36rem
+    );
+    background-size: 100% 3.4rem;
+  }
+  .paper-margin-line {
+    left: 3.1rem;
+  }
 }
 
 /* NOTE: light sweep ("glow") removed for now — will be re-added from a
@@ -415,6 +431,32 @@ body::after {
         rotate: 10deg;
       }
     }
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Print — used by /resume's PDF export. The desk, grain, wash,
+   and site chrome all disappear; only the document prints.
+   ───────────────────────────────────────────────────────────── */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 13mm;
+  }
+  html {
+    background: #fff !important;
+  }
+  body::before,
+  body::after {
+    display: none !important;
+  }
+  .resume-sheet {
+    border-radius: 0;
+  }
+  /* keep hairline rules and text crisp */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
 }
 

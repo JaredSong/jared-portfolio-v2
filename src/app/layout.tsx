@@ -92,7 +92,7 @@ export default function RootLayout({
             (-z-10), under the film-grain pseudos (-z-[1]). */}
         <div
           aria-hidden
-          className="pointer-events-none absolute start-1/2 top-0 -z-10 aspect-[2/1] w-[100vw] origin-bottom -translate-x-1/2 overflow-hidden sm:w-[120rem] md:top-[-9%] md:-translate-x-1/3 lg:w-[150rem] lg:-translate-x-2/3"
+          className="pointer-events-none absolute start-1/2 top-0 -z-10 aspect-[2/1] w-[100vw] origin-bottom -translate-x-1/2 overflow-hidden sm:w-[120rem] md:top-[-9%] md:-translate-x-1/3 lg:w-[150rem] lg:-translate-x-2/3 print:hidden"
         >
           <div className="grain-texture animate-moving-wiggle h-1/2 w-full origin-top blur-[30px] will-change-transform md:blur-[50px] dark:blur-[40px] dark:md:blur-[60px]" />
         </div>

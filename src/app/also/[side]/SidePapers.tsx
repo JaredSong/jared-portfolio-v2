@@ -49,26 +49,45 @@ export default function SidePapers({ side }: { side: string }) {
 
   let sheets: SheetData[];
   if (side === "payment-review") {
-    sheets = [
-      heroFor("also.eagle"),
-      {
-        id: "roles",
-        kicker: t("also.eagle.s2.kicker"),
-        title: t("also.eagle.s2.title"),
-        body: t("also.eagle.s2.body"),
-        accent,
-      },
-      {
-        id: "ai-reader",
-        kicker: t("also.eagle.s3.kicker"),
-        title: t("also.eagle.s3.title"),
-        body: t("also.eagle.s3.body"),
-        accent,
-      },
-      wipSheet,
-    ];
+    // Deliberately minimal until Jared clears more with his employer:
+    // workflow name + status only, no work detail, no employer name.
+    sheets = [heroFor("also.eagle"), wipSheet];
   } else if (side === "wheelcake") {
-    sheets = [heroFor("also.wheelcake"), wipSheet];
+    // full concise case: founded → why → challenge → brand → menu → ops →
+    // reflection. Honest about the closure — that's the point of the case.
+    const visitLink = (
+      <a
+        href="https://whatswheelcake.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-sm font-medium text-orange-600 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300"
+      >
+        {t("also.wheelcake.visit")}
+      </a>
+    );
+    const hero = heroFor("also.wheelcake");
+    hero.footer = visitLink;
+    const chapters = ["wc.why", "wc.challenge", "wc.brand", "wc.menu", "wc.ops", "wc.close"].map(
+      (key): SheetData => ({
+        id: key.replace("wc.", ""),
+        kicker: t(`${key}.kicker`),
+        title: t(`${key}.title`),
+        body: t(`${key}.body`),
+        accent: key === "wc.close" ? accent : undefined,
+      }),
+    );
+    chapters[chapters.length - 1].footer = (
+      <div className="flex flex-wrap items-center gap-5">
+        {visitLink}
+        <Link
+          href="/"
+          className="text-sm font-medium text-neutral-500 hover:text-foreground"
+        >
+          {t("also.back")}
+        </Link>
+      </div>
+    );
+    sheets = [hero, ...chapters];
   } else {
     sheets = [heroFor("also.earlier"), wipSheet];
   }

@@ -1,34 +1,82 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 /**
- * Small folder for the "Other sides" shelf — same desk grammar as the CaCa
- * folder (folder → opens to papers) but deliberately quieter: papers peek
- * and lift on hover/focus, no sticker tableau, no tilt. The featured-folder
- * treatment stays exclusive to CaCa.
+ * Small folder for the "More work" shelf — same desk grammar as the CaCa
+ * folder (folder → opens to papers), quieter by design: fewer, smaller
+ * stickers and a single-color glow, so the featured folder stays senior.
+ *
+ * Reveal states mirror CacaFolder: hover / keyboard focus (`open:` variant)
+ * + IntersectionObserver for touch devices (no hover there).
+ * Each folder glows in ITS OWN color (`glow` = rgba string).
  */
+
+export type MiniSticker = {
+  src: string;
+  /* wrapper position/size + rotation + open: motion */
+  cls: string;
+  delay: string;
+};
 
 export type MiniFolderData = {
   id: string;
   href: string;
   label: string;
   sub: string;
-  mark: string; // corner mark, e.g. "C /"
-  note?: string; // e.g. "coming soon"
+  mark: string; // corner mark, e.g. "P /"
+  note?: string; // e.g. "concise case"
   gradient: string; // folder body gradient classes
   tab: string; // folder tab gradient classes
+  stickers?: MiniSticker[];
 };
 
 export default function MiniFolder({ folder }: { folder: MiniFolderData }) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const [inViewOpen, setInViewOpen] = useState(false);
+
+  useEffect(() => {
+    if (window.matchMedia("(hover: hover)").matches) return;
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInViewOpen(entry.intersectionRatio >= 0.6),
+      { threshold: [0, 0.6, 1] },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
   return (
     <Link
+      ref={ref}
       href={folder.href}
-      // single-column: match the CaCa folder's 440px cap (a full-width mini
-      // reads BIGGER than the featured folder); grid columns take over at sm+
-      className="group relative mx-auto block w-full max-w-[440px] sm:max-w-none"
+      data-open={inViewOpen ? "true" : undefined}
+      // isolate: keeps the -z-10 glow inside this card's stacking context
+      className="group relative mx-auto block w-full max-w-[440px] isolate sm:max-w-none"
       aria-label={folder.label}
     >
+      {/* stickers — bloom on open, like the CaCa folder but smaller.
+          No glow overlay on minis (looked muddy over the pastels);
+          positions deliberately scattered, not four-corners. */}
+      {folder.stickers?.map((s) => (
+        <div
+          key={s.src}
+          aria-hidden
+          className={`pointer-events-none absolute z-30 ${s.cls}`}
+        >
+          <Image
+            src={s.src}
+            alt=""
+            width={200}
+            height={200}
+            className={`w-full opacity-0 scale-75 drop-shadow-md transition-all duration-300 ease-out open:opacity-100 open:scale-100 motion-reduce:transition-none ${s.delay}`}
+          />
+        </div>
+      ))}
+
       {/* papers peeking from the top — %-width overlapping sheets (same
           treatment as the CaCa folder), lift on hover/focus */}
       {[

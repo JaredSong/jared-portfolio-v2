@@ -8,7 +8,7 @@ import { useI18n } from "@/lib/i18n";
 const connectLinks = [
   { key: "home.link.email", href: "mailto:jared.sjj@gmail.com" },
   { key: "home.link.linkedin", href: "https://www.linkedin.com/in/jared-song-a6371295/" },
-  { key: "home.link.resume", href: "/Jared Song - Resume.pdf" },
+  { key: "home.link.resume", href: "/resume" },
   { key: "home.link.archive", href: "https://archive.jaredsong.com/" },
 ];
 
@@ -89,7 +89,7 @@ export default function Home() {
                 {t("home.about.worked")}
               </h3>
               <ul className="mt-4 space-y-2 text-sm text-neutral-700 dark:text-neutral-300">
-                <li>Eagle AI · Taiwan</li>
+                <li>Construction payment review · Taiwan</li>
                 <li>CaCa Taxi · Yangon</li>
                 <li>MyanLife · integration</li>
                 <li className="text-neutral-400 dark:text-neutral-500">

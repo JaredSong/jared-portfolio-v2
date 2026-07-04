@@ -118,11 +118,11 @@ export default function CacaFolder() {
               glowing on the dark desk */}
           <div
             aria-hidden
-            className="pointer-events-none absolute -inset-x-56 -inset-y-36 z-[15] rounded-full bg-[radial-gradient(ellipse_at_top,rgba(217,245,227,0.75),rgba(217,245,227,0)_68%)] opacity-0 blur-3xl transition-opacity duration-500 ease-out open:opacity-100 motion-reduce:transition-none dark:bg-[radial-gradient(ellipse_at_top,rgba(31,157,77,0.35),rgba(31,157,77,0)_68%)]"
+            className="pointer-events-none absolute -inset-x-56 -inset-y-36 z-[15] rounded-full bg-[radial-gradient(ellipse_at_top,rgba(31,157,77,0.32),rgba(31,157,77,0)_68%)] opacity-0 blur-3xl transition-opacity duration-500 ease-out open:opacity-100 motion-reduce:transition-none"
           />
           <div
             aria-hidden
-            className="pointer-events-none absolute -inset-x-28 -inset-y-16 z-[15] rounded-full bg-[linear-gradient(to_bottom,rgba(255,255,255,0.5),rgba(255,255,255,0)_60%)] opacity-0 blur-2xl scale-90 transition-all duration-500 ease-out open:opacity-100 open:scale-100 motion-reduce:transition-none dark:bg-[linear-gradient(to_bottom,rgba(120,220,160,0.22),rgba(120,220,160,0)_60%)]"
+            className="pointer-events-none absolute -inset-x-28 -inset-y-16 z-[15] rounded-full bg-[linear-gradient(to_bottom,rgba(110,215,155,0.28),rgba(110,215,155,0)_60%)] opacity-0 blur-2xl scale-90 transition-all duration-500 ease-out open:opacity-100 open:scale-100 motion-reduce:transition-none"
           />
 
           {/* ── Stickers (hidden at rest, bloom when open, deepest parallax) ── */}
