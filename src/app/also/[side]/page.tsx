@@ -4,7 +4,7 @@ import SidePapers from "./SidePapers";
 // Server wrapper: static params + 404 guard. The papers themselves are a
 // client component (SidePapers) so copy resolves through the i18n layer.
 
-const sides = ["coding", "motion", "earlier-work"];
+const sides = ["payment-review", "wheelcake", "earlier-work"];
 
 export function generateStaticParams() {
   return sides.map((side) => ({ side }));

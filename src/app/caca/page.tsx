@@ -1,107 +1,85 @@
 "use client";
 
 /**
- * /caca — the CaCa case study, now the paper-coming-in stack.
- * Each chapter is a sheet that slides up over the last (see PaperSheets).
- * Content is placeholder copy resolved through the i18n layer (EN/中); the
- * local-context sheet carries Burmese inline as the tri-script proof.
+ * /caca — the CaCa case study as the paper-coming-in stack.
+ * 15 chapters, real copy (Jared's draft, tightened 2026-07-04 — see i18n).
+ * Structure: lede → why → role → challenge → ecosystem → five surfaces →
+ * design system → unhappy paths → local context → outcome → reflection.
  *
- * Chapters are one-viewport sheets by design — long ones split later rather
- * than scroll internally.
+ * One sheet = one viewport (no internal scroll — that constraint is what
+ * keeps the native-scroll stack honest). Artifact visuals (ecosystem
+ * diagram, tri-script specimen, app screens) get footer slots later.
  */
 
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n";
 import PaperSheets, { type SheetData } from "@/components/PaperSheets";
 
+// chapter ids + key prefixes; accent marks the brand-moment sheets
+const chapters: { id: string; key: string; accent?: boolean }[] = [
+  { id: "lede", key: "cs.lede", accent: true },
+  { id: "why", key: "cs.why" },
+  { id: "role", key: "cs.role" },
+  { id: "challenge", key: "cs.challenge" },
+  { id: "ecosystem", key: "cs.eco" },
+  { id: "passenger", key: "cs.passenger" },
+  { id: "driver", key: "cs.driver" },
+  { id: "delivery", key: "cs.delivery" },
+  { id: "backend", key: "cs.backend" },
+  { id: "website", key: "cs.website" },
+  { id: "design-system", key: "cs.system" },
+  { id: "qa-flow", key: "cs.qa" },
+  { id: "local-context", key: "cs.local", accent: true },
+  { id: "outcome", key: "cs.outcome" },
+  { id: "closing", key: "cs.closing" },
+];
+
 export default function CacaCaseStudy() {
   const { t } = useI18n();
 
-  const sheets: SheetData[] = [
-    {
-      id: "lede",
-      kicker: t("cs.hero.kicker"),
-      title: t("cs.hero.title"),
-      body: t("cs.hero.body"),
-      accent: "text-caca-green",
-      footer: (
-        <div className="flex flex-wrap gap-2">
-          {["5 surfaces", "3 scripts", "19 months", "Live in stores"].map(
-            (pill) => (
-              <span
-                key={pill}
-                className="rounded-full border border-[var(--paper-edge)] px-3 py-1 text-xs text-neutral-500 dark:text-neutral-400"
-              >
-                {pill}
-              </span>
-            ),
-          )}
-        </div>
-      ),
-    },
-    {
-      id: "why",
-      kicker: t("cs.why.kicker"),
-      title: t("cs.why.title"),
-      body: t("cs.why.body"),
-    },
-    {
-      id: "ecosystem",
-      kicker: t("cs.eco.kicker"),
-      title: t("cs.eco.title"),
-      body: t("cs.eco.body"),
-    },
-    {
-      id: "surfaces",
-      kicker: t("cs.surfaces.kicker"),
-      title: t("cs.surfaces.title"),
-      body: t("cs.surfaces.body"),
-    },
-    {
-      id: "design-system",
-      kicker: t("cs.system.kicker"),
-      title: t("cs.system.title"),
-      body: t("cs.system.body"),
-    },
-    {
-      id: "qa-flow",
-      kicker: t("cs.qa.kicker"),
-      title: t("cs.qa.title"),
-      body: t("cs.qa.body"),
-    },
-    {
-      id: "local-context",
-      kicker: t("cs.local.kicker"),
-      title: t("cs.local.title"),
-      body: t("cs.local.body"),
-      accent: "text-caca-green",
-    },
-    {
-      id: "closing",
-      kicker: t("cs.closing.kicker"),
-      title: t("cs.closing.title"),
-      body: t("cs.closing.body"),
-      footer: (
-        <div className="flex flex-wrap items-center gap-5">
-          <Link
-            href="/#connect"
-            className="rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
-          >
-            {t("cs.closing.cta")}
-          </Link>
-          <Link
-            href="/"
-            className="text-sm font-medium text-neutral-500 hover:text-foreground"
-          >
-            {t("cs.back")}
-          </Link>
-        </div>
-      ),
-    },
-  ];
+  const sheets: SheetData[] = chapters.map(({ id, key, accent }) => ({
+    id,
+    kicker: t(`${key}.kicker`),
+    title: t(`${key}.title`),
+    body: t(`${key}.body`),
+    accent: accent ? "text-caca-green" : undefined,
+  }));
 
-  // ✕ close — v1 story-view pattern, now living ON each paper's top-right
-  // corner (passed through PaperSheets' `corner` slot).
+  // lede: stat pills
+  sheets[0].footer = (
+    <div className="flex flex-wrap gap-2">
+      {["5 surfaces", "3 scripts", "19 months", "Live in stores"].map(
+        (pill) => (
+          <span
+            key={pill}
+            className="rounded-full border border-[var(--paper-edge)] px-3 py-1 text-xs text-neutral-500 dark:text-neutral-400"
+          >
+            {pill}
+          </span>
+        ),
+      )}
+    </div>
+  );
+
+  // closing: CTA
+  sheets[sheets.length - 1].footer = (
+    <div className="flex flex-wrap items-center gap-5">
+      <Link
+        href="/#connect"
+        className="rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-neutral-700 dark:bg-white dark:text-neutral-900 dark:hover:bg-neutral-200"
+      >
+        {t("cs.closing.cta")}
+      </Link>
+      <Link
+        href="/"
+        className="text-sm font-medium text-neutral-500 hover:text-foreground"
+      >
+        {t("cs.back")}
+      </Link>
+    </div>
+  );
+
+  // ✕ close — v1 story-view pattern, on each paper's top-right corner
   const closeButton = (
     <Link
       href="/"

@@ -6,8 +6,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     "/en",
     "/caca",
-    "/also/coding",
-    "/also/motion",
+    "/also/payment-review",
+    "/also/wheelcake",
     "/also/earlier-work",
   ].map((path) => ({
     url: `${baseUrl}${path}`,

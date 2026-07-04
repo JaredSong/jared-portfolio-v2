@@ -13,24 +13,26 @@ export default function OtherSides() {
   const { t } = useI18n();
 
   const folders: MiniFolderData[] = [
-    // v1-style pastels (portfolioStructure.ts gradientFrom/To): pale same-hue
-    // washes + dark text, not saturated gradients
+    // v1-style pastels: pale same-hue washes + dark text. Hierarchy is
+    // deliberate (see memory: v2-positioning): Eagle = second professional
+    // proof (concise, employer-safe), Wheelcake = craft/personality proof,
+    // Earlier = range proof.
     {
-      id: "coding",
-      href: "/also/coding",
-      label: t("home.sides.coding"),
-      sub: t("home.sides.coding.sub"),
-      mark: "C /",
-      gradient: "bg-gradient-to-br from-[#e5f9f8] to-[#ccf2f0]",
-      tab: "bg-gradient-to-r from-[#ccf2f0] to-[#a9e6e2]",
+      id: "eagle",
+      href: "/also/payment-review",
+      label: t("home.sides.eagle"),
+      sub: t("home.sides.eagle.sub"),
+      mark: "P /",
+      note: t("home.sides.eagle.note"),
+      gradient: "bg-gradient-to-br from-[#dbeafe] to-[#bfdbfe]",
+      tab: "bg-gradient-to-r from-[#bfdbfe] to-[#a5cdf7]",
     },
     {
-      id: "motion",
-      href: "/also/motion",
-      label: t("home.sides.motion"),
-      sub: t("home.sides.motion.sub"),
-      mark: "M /",
-      note: t("home.sides.motion.note"),
+      id: "wheelcake",
+      href: "/also/wheelcake",
+      label: t("home.sides.wheelcake"),
+      sub: t("home.sides.wheelcake.sub"),
+      mark: "W /",
       gradient: "bg-gradient-to-br from-[#ffedd5] to-[#fed7aa]",
       tab: "bg-gradient-to-r from-[#fed7aa] to-[#fdc98c]",
     },

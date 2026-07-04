@@ -89,14 +89,31 @@ export default function Home() {
                 {t("home.about.worked")}
               </h3>
               <ul className="mt-4 space-y-2 text-sm text-neutral-700 dark:text-neutral-300">
+                <li>Eagle AI · Taiwan</li>
                 <li>CaCa Taxi · Yangon</li>
                 <li>MyanLife · integration</li>
                 <li className="text-neutral-400 dark:text-neutral-500">
-                  {/* PLACEHOLDER — earlier freelance clients */}
                   {t("home.about.tbd")}
                 </li>
               </ul>
             </div>
+          </div>
+        </section>
+
+        {/* ── Capabilities ── */}
+        <section id="capabilities" className="mx-auto max-w-4xl px-6 pb-40">
+          <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-neutral-500 dark:text-neutral-400">
+            {t("home.cap.kicker")}
+          </h3>
+          <div className="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2 md:grid-cols-3">
+            {(["i1", "i2", "i3", "i4", "i5", "i6"] as const).map((k) => (
+              <div key={k} className="border-t border-neutral-200 pt-3 dark:border-white/10">
+                <p className="font-medium">{t(`home.cap.${k}.t`)}</p>
+                <p className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
+                  {t(`home.cap.${k}.d`)}
+                </p>
+              </div>
+            ))}
           </div>
         </section>
 
