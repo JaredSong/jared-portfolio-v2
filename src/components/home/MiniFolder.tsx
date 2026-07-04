@@ -30,6 +30,7 @@ export type MiniFolderData = {
   note?: string; // e.g. "concise case"
   gradient: string; // folder body gradient classes
   tab: string; // folder tab gradient classes
+  glow: string; // rgba color — hover glow in the folder's own color
   stickers?: MiniSticker[];
 };
 
@@ -58,8 +59,16 @@ export default function MiniFolder({ folder }: { folder: MiniFolderData }) {
       className="group relative mx-auto block w-full max-w-[440px] isolate sm:max-w-none"
       aria-label={folder.label}
     >
-      {/* stickers — bloom on open, like the CaCa folder but smaller.
-          No glow overlay on minis (looked muddy over the pastels);
+      {/* glow in the folder's own color — same in light and dark */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -inset-x-16 -inset-y-12 -z-10 rounded-full opacity-0 blur-2xl transition-opacity duration-500 ease-out open:opacity-100 motion-reduce:transition-none"
+        style={{
+          background: `radial-gradient(ellipse at center, ${folder.glow}, transparent 72%)`,
+        }}
+      />
+
+      {/* stickers — bloom on open, like the CaCa folder but smaller;
           positions deliberately scattered, not four-corners. */}
       {folder.stickers?.map((s) => (
         <div

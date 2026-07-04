@@ -153,22 +153,28 @@ export default function CacaFolder() {
             className="pointer-events-none absolute left-1/2 top-2 z-20 h-36 w-20 sm:h-48 sm:w-24"
             style={depth(14, 10)}
           >
-            <div className="phone-rise-a h-full w-full -translate-x-[85%] rounded-2xl border-4 border-white bg-gradient-to-b from-caca-green to-caca-deep opacity-0 shadow-xl transition-all duration-300 ease-out -rotate-6 open:-translate-y-32 open:opacity-100 open:-rotate-10 sm:open:-translate-y-44 motion-reduce:transition-none">
-              <p className="mt-12 text-center font-hand text-base text-white/90 sm:mt-16 sm:text-lg">
-                Passenger
-              </p>
-            </div>
+            {/* real passenger-app screenshot (frame + shadow baked in) */}
+            <Image
+              src="/caca/phone-passenger.png"
+              alt=""
+              width={355}
+              height={640}
+              className="phone-rise-a h-full w-auto -translate-x-[85%] opacity-0 transition-all duration-300 ease-out -rotate-6 open:-translate-y-32 open:opacity-100 open:-rotate-10 sm:open:-translate-y-44 motion-reduce:transition-none"
+            />
           </div>
           <div
             aria-hidden
             className="pointer-events-none absolute left-1/2 top-2 z-20 h-36 w-20 sm:h-48 sm:w-24"
             style={depth(11, 8)}
           >
-            <div className="phone-rise-b h-full w-full -translate-x-[15%] rounded-2xl border-4 border-white bg-gradient-to-b from-neutral-800 to-neutral-950 opacity-0 shadow-xl transition-all duration-300 delay-[75ms] ease-out rotate-6 open:-translate-y-28 open:opacity-100 open:rotate-10 sm:open:-translate-y-40 motion-reduce:transition-none">
-              <p className="mt-12 text-center font-hand text-base text-white/90 sm:mt-16 sm:text-lg">
-                Driver
-              </p>
-            </div>
+            {/* real driver-app screenshot (frame + shadow baked in) */}
+            <Image
+              src="/caca/phone-driver.png"
+              alt=""
+              width={355}
+              height={640}
+              className="phone-rise-b h-full w-auto -translate-x-[15%] opacity-0 transition-all duration-300 delay-[75ms] ease-out rotate-6 open:-translate-y-28 open:opacity-100 open:rotate-10 sm:open:-translate-y-40 motion-reduce:transition-none"
+            />
           </div>
 
           {/* ── Papers peeking from the folder top — three distinct sheets.

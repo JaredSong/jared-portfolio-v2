@@ -39,6 +39,9 @@ export type SheetData = {
   accent?: string;
   /* optional content under the body — CTA, tiles, a diagram slot, etc. */
   footer?: ReactNode;
+  /* optional visual (photo, diagram): right column on desktop, flows
+     between body and footer on mobile */
+  aside?: ReactNode;
 };
 
 /* Alternating skew per stack position — deterministic, repeats past 8. */
@@ -100,26 +103,43 @@ export default function PaperSheets({
                 {/* bottom padding is heavier than top to re-center the text
                     optically — the paper's bottom 3rem is off-screen.
                     Mobile: text starts just inside the (narrower) margin
-                    line with a balanced right edge. */}
-                <div className="w-full max-w-3xl pt-20 pb-32 pl-14 pr-6 sm:pl-16 sm:pr-8 md:pt-24 md:pb-36 md:pl-32 md:pr-16">
-                  {sheet.kicker && (
-                    <p
-                      className={`text-xs font-semibold uppercase tracking-[0.22em] ${
-                        sheet.accent ?? "text-neutral-400 dark:text-neutral-500"
-                      }`}
-                    >
-                      {sheet.kicker}
-                    </p>
+                    line with a balanced right edge. With an aside, desktop
+                    goes two-column: text left, visual right. */}
+                <div
+                  className={`w-full pt-20 pb-32 pl-14 pr-6 sm:pl-16 sm:pr-8 md:pt-24 md:pb-36 md:pl-32 md:pr-16 ${
+                    sheet.aside
+                      ? "max-w-6xl md:grid md:grid-cols-[1fr_minmax(0,44%)] md:items-center md:gap-12"
+                      : "max-w-3xl"
+                  }`}
+                >
+                  <div>
+                    {sheet.kicker && (
+                      <p
+                        className={`text-xs font-semibold uppercase tracking-[0.22em] ${
+                          sheet.accent ?? "text-neutral-400 dark:text-neutral-500"
+                        }`}
+                      >
+                        {sheet.kicker}
+                      </p>
+                    )}
+                    <h2 className="mt-5 text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl md:text-6xl">
+                      {sheet.title}
+                    </h2>
+                    {sheet.body && (
+                      <p className="mt-6 text-base leading-relaxed text-neutral-600 dark:text-neutral-300 sm:text-lg md:text-xl">
+                        {sheet.body}
+                      </p>
+                    )}
+                    {/* mobile: visual sits between body and footer */}
+                    {sheet.aside && (
+                      <div className="mt-8 md:hidden">{sheet.aside}</div>
+                    )}
+                    {sheet.footer && <div className="mt-8">{sheet.footer}</div>}
+                  </div>
+                  {/* desktop: visual as the right column */}
+                  {sheet.aside && (
+                    <div className="hidden md:block">{sheet.aside}</div>
                   )}
-                  <h2 className="mt-5 text-3xl font-semibold leading-[1.1] tracking-tight text-foreground sm:text-4xl md:text-6xl">
-                    {sheet.title}
-                  </h2>
-                  {sheet.body && (
-                    <p className="mt-6 text-base leading-relaxed text-neutral-600 dark:text-neutral-300 sm:text-lg md:text-xl">
-                      {sheet.body}
-                    </p>
-                  )}
-                  {sheet.footer && <div className="mt-8">{sheet.footer}</div>}
                 </div>
 
                 {/* page number, bottom-right, like a printed sheet */}

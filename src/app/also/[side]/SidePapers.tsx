@@ -25,7 +25,7 @@ function SheetPhoto({
       width={width}
       height={height}
       alt={alt}
-      className="max-h-[30vh] w-auto rounded-lg border border-black/10 object-cover shadow-md"
+      className="max-h-[30vh] w-auto rounded-lg border border-black/10 object-cover shadow-md md:max-h-[52vh]"
     />
   );
 }
@@ -91,17 +91,15 @@ export default function SidePapers({ side }: { side: string }) {
       />
     );
     const hero = heroFor("also.wheelcake");
-    hero.footer = (
-      <div className="space-y-5">
-        <SheetPhoto
-          src="/wheelcake/stand.webp"
-          width={900}
-          height={506}
-          alt="The What's Wheelcake stand with customers, Kaohsiung"
-        />
-        {visitLink}
-      </div>
+    hero.aside = (
+      <SheetPhoto
+        src="/wheelcake/stand.webp"
+        width={900}
+        height={506}
+        alt="The What's Wheelcake stand with customers, Kaohsiung"
+      />
     );
+    hero.footer = visitLink;
     const chapters = ["wc.why", "wc.challenge", "wc.brand", "wc.menu", "wc.ops", "wc.close"].map(
       (key): SheetData => ({
         id: key.replace("wc.", ""),
@@ -112,8 +110,8 @@ export default function SidePapers({ side }: { side: string }) {
       }),
     );
     // real photos on the papers: brand → booth signage, menu → product,
-    // ops → the griddle mid-service
-    chapters[2].footer = (
+    // ops → the griddle mid-service (right column on desktop)
+    chapters[2].aside = (
       <SheetPhoto
         src="/wheelcake/booth.webp"
         width={900}
@@ -121,7 +119,7 @@ export default function SidePapers({ side }: { side: string }) {
         alt="Booth front with hand-written flavor plaques"
       />
     );
-    chapters[3].footer = (
+    chapters[3].aside = (
       <SheetPhoto
         src="/wheelcake/product.webp"
         width={550}
@@ -129,7 +127,7 @@ export default function SidePapers({ side }: { side: string }) {
         alt="Branded wheel cake with chocolate filling, plated"
       />
     );
-    chapters[4].footer = (
+    chapters[4].aside = (
       <SheetPhoto
         src="/wheelcake/griddle.webp"
         width={900}
