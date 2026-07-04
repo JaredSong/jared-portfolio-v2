@@ -101,7 +101,7 @@ export default function PaperSheets({
                     optically — the paper's bottom 3rem is off-screen.
                     Mobile: text starts just inside the (narrower) margin
                     line with a balanced right edge. */}
-                <div className="w-full max-w-3xl pt-20 pb-32 pl-12 pr-6 sm:pl-16 sm:pr-8 md:pt-24 md:pb-36 md:pl-32 md:pr-16">
+                <div className="w-full max-w-3xl pt-20 pb-32 pl-14 pr-6 sm:pl-16 sm:pr-8 md:pt-24 md:pb-36 md:pl-32 md:pr-16">
                   {sheet.kicker && (
                     <p
                       className={`text-xs font-semibold uppercase tracking-[0.22em] ${

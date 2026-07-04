@@ -1,8 +1,34 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useI18n } from "@/lib/i18n";
 import PaperSheets, { type SheetData } from "@/components/PaperSheets";
+import ProofBadge from "@/components/ProofBadge";
+
+/* photo printed on the paper — height-capped so the sheet still fits one
+   viewport (the case-study content rule) */
+function SheetPhoto({
+  src,
+  width,
+  height,
+  alt,
+}: {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+}) {
+  return (
+    <Image
+      src={src}
+      width={width}
+      height={height}
+      alt={alt}
+      className="max-h-[30vh] w-auto rounded-lg border border-black/10 object-cover shadow-md"
+    />
+  );
+}
 
 /**
  * The papers inside an "other work" mini folder — same PaperSheets mechanic
@@ -55,18 +81,27 @@ export default function SidePapers({ side }: { side: string }) {
   } else if (side === "wheelcake") {
     // full concise case: founded → why → challenge → brand → menu → ops →
     // reflection. Honest about the closure — that's the point of the case.
+    // badge follows the case's brand color (Wheelcake = warm orange)
     const visitLink = (
-      <a
+      <ProofBadge
         href="https://whatswheelcake.com/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-sm font-medium text-orange-600 hover:text-orange-700 dark:text-orange-400 dark:hover:text-orange-300"
-      >
-        {t("also.wheelcake.visit")}
-      </a>
+        top="Visit"
+        bottom="whatswheelcake.com"
+        className="border-orange-400/40 bg-orange-700 hover:bg-orange-600"
+      />
     );
     const hero = heroFor("also.wheelcake");
-    hero.footer = visitLink;
+    hero.footer = (
+      <div className="space-y-5">
+        <SheetPhoto
+          src="/wheelcake/stand.webp"
+          width={900}
+          height={506}
+          alt="The What's Wheelcake stand with customers, Kaohsiung"
+        />
+        {visitLink}
+      </div>
+    );
     const chapters = ["wc.why", "wc.challenge", "wc.brand", "wc.menu", "wc.ops", "wc.close"].map(
       (key): SheetData => ({
         id: key.replace("wc.", ""),
@@ -75,6 +110,32 @@ export default function SidePapers({ side }: { side: string }) {
         body: t(`${key}.body`),
         accent: key === "wc.close" ? accent : undefined,
       }),
+    );
+    // real photos on the papers: brand → booth signage, menu → product,
+    // ops → the griddle mid-service
+    chapters[2].footer = (
+      <SheetPhoto
+        src="/wheelcake/booth.webp"
+        width={900}
+        height={506}
+        alt="Booth front with hand-written flavor plaques"
+      />
+    );
+    chapters[3].footer = (
+      <SheetPhoto
+        src="/wheelcake/product.webp"
+        width={550}
+        height={440}
+        alt="Branded wheel cake with chocolate filling, plated"
+      />
+    );
+    chapters[4].footer = (
+      <SheetPhoto
+        src="/wheelcake/griddle.webp"
+        width={900}
+        height={1599}
+        alt="The wheel-cake griddle mid-service"
+      />
     );
     chapters[chapters.length - 1].footer = (
       <div className="flex flex-wrap items-center gap-5">
