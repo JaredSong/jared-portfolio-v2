@@ -75,7 +75,7 @@ const dictionaries: Record<Lang, Dict> = {
     // Facts confirmed: only designer on the team; 4-month MVP → expansion;
     // apps still live (framed positively, no digs); MyanGO nameable;
     // bicycle-fleet delivery refactor real. No invented metrics.
-    "cs.lede.kicker": "Case study · ~12 min",
+    "cs.lede.kicker": "~12 min read",
     "cs.lede.title": "CaCa — a ride-hailing platform in Yangon",
     "cs.lede.body":
       "19 months as the only designer on the team. Five surfaces, three scripts, a four-month MVP — live in stores. This is the long version.",
@@ -114,7 +114,7 @@ const dictionaries: Record<Lang, Dict> = {
     "cs.website.kicker": "05e · Marketing site",
     "cs.website.title": "cacataxi.com — designed and built",
     "cs.website.body":
-      "The public face: service, trust, and identity, responsive across devices. I designed and developed it myself, end to end.",
+      "Four surfaces were mine to design. This one was mine to design and build. cacataxi.com is where a first-time rider decides whether CaCa is real, so it carries three jobs at once: explain the service, earn the trust, hold the identity the apps had already set. I structured it around those three — responsive from phone to desktop, and holding the same tri-script discipline the product ran on: English, 中文, and မြန်မာ on one page with no shared baseline or rhythm. Designed and developed end to end, by the same hand that drew the screens it points to.",
     "cs.system.kicker": "06 · Design system",
     "cs.system.title": "One language across five surfaces",
     "cs.system.body":
@@ -308,7 +308,7 @@ const dictionaries: Record<Lang, Dict> = {
     "s4.cta": "與我聯繫",
 
     // ── Case study chapters ──
-    "cs.lede.kicker": "案例研究 · 約 12 分鐘",
+    "cs.lede.kicker": "約 12 分鐘閱讀",
     "cs.lede.title": "CaCa — 仰光的叫車平台",
     "cs.lede.body":
       "擔任團隊中唯一設計師的 19 個月。五個介面、三種文字、四個月上線的 MVP——已上架。這是完整版的故事。",
@@ -347,7 +347,7 @@ const dictionaries: Record<Lang, Dict> = {
     "cs.website.kicker": "05e · 行銷網站",
     "cs.website.title": "cacataxi.com——從設計到上線",
     "cs.website.body":
-      "對外的門面：服務、信任與識別，跨裝置響應式。從設計到開發上線，都由我親手完成。",
+      "五個介面裡，四個由我設計，這一個由我設計也由我開發。cacataxi.com 是初次搭乘的乘客判斷 CaCa 是否可信的地方，所以它同時扛起三件事：把服務說清楚、把信任贏回來、延續 App 已經立起的識別。我圍繞這三件事組織版面——從手機到桌機皆為響應式，並維持產品一貫的三文字紀律：英文、中文、မြန်မာ 同屏共存，沒有共通的基線或節奏。從設計到開發，端到端，都出自同一雙手——正是畫出它所指向那些畫面的同一雙手。",
     "cs.system.kicker": "06 · 設計系統",
     "cs.system.title": "五個介面，一套語言",
     "cs.system.body":
