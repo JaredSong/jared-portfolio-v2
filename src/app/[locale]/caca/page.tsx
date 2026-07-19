@@ -2,9 +2,11 @@
 
 /**
  * /caca — the CaCa case study as the paper-coming-in stack.
- * 15 chapters, real copy (Jared's draft, tightened 2026-07-04 — see i18n).
- * Structure: lede → why → role → challenge → ecosystem → five surfaces →
- * design system → unhappy paths → local context → outcome → reflection.
+ * 16 sheets = 15 chapters of real copy (Jared's draft, tightened
+ * 2026-07-04 — see i18n) + a contents sheet after the lede.
+ * Structure: lede → contents → why → role → challenge → ecosystem →
+ * five surfaces → design system → unhappy paths → local context →
+ * outcome → reflection. Five chapter groups drive the TOC rows.
  *
  * One sheet = one viewport (no internal scroll — that constraint is what
  * keeps the native-scroll stack honest). Artifact visuals (ecosystem
@@ -12,13 +14,18 @@
  */
 
 import Link from "next/link";
+import Image from "next/image";
 import { useI18n } from "@/lib/i18n";
-import PaperSheets, { type SheetData } from "@/components/PaperSheets";
+import PaperSheets, {
+  jumpToSheet,
+  type SheetData,
+} from "@/components/PaperSheets";
 import ProofBadge from "@/components/ProofBadge";
 
 // chapter ids + key prefixes; accent marks the brand-moment sheets
 const chapters: { id: string; key: string; accent?: boolean }[] = [
   { id: "lede", key: "cs.lede", accent: true },
+  { id: "contents", key: "cs.toc" },
   { id: "why", key: "cs.why" },
   { id: "role", key: "cs.role" },
   { id: "challenge", key: "cs.challenge" },
@@ -34,6 +41,38 @@ const chapters: { id: string; key: string; accent?: boolean }[] = [
   { id: "outcome", key: "cs.outcome" },
   { id: "closing", key: "cs.closing" },
 ];
+
+/* Aside artifact — same visual grammar as the Wheelcake shots (SidePapers).
+   `diagram: true` = transparent PNG figures that print DIRECTLY on the paper
+   (no white plate, no border — Jared 2026-07-09); photos stay bordered
+   shots. */
+function Artifact({
+  src,
+  width,
+  height,
+  alt,
+  diagram = false,
+}: {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  diagram?: boolean;
+}) {
+  return (
+    <Image
+      src={src}
+      width={width}
+      height={height}
+      alt={alt}
+      className={`max-h-[30vh] w-auto md:max-h-[52vh] ${
+        diagram
+          ? "object-contain"
+          : "rounded-lg border border-black/10 object-cover shadow-md"
+      }`}
+    />
+  );
+}
 
 export default function CacaCaseStudy() {
   const { t, localeHref } = useI18n();
@@ -111,8 +150,88 @@ export default function CacaCaseStudy() {
     </div>
   );
 
+  // aside artifacts — real CaCa material from Jared's archive (2026-07-09).
+  // Transparent diagrams print directly on the paper; photos are bordered
+  // shots. Indices follow the chapters array above.
+  sheets[5].aside = (
+    <Artifact
+      src="/caca/ecosystem-map.png"
+      width={815}
+      height={670}
+      alt="CaCa ecosystem map — passenger app, driver app, backend interface and delivery system around one platform"
+      diagram
+    />
+  );
+  sheets[6].aside = (
+    <Artifact
+      src="/caca/passenger-screens.jpg"
+      width={800}
+      height={436}
+      alt="CaCa passenger app — home screen and a booking with route, car types and fares"
+    />
+  );
+  sheets[7].aside = (
+    <Artifact
+      src="/caca/driver-online.png"
+      width={644}
+      height={222}
+      alt="Driver app — the go-online control over the live map"
+      diagram
+    />
+  );
+  sheets[13].aside = (
+    <Artifact
+      src="/caca/yangon-downtown.jpg"
+      width={1200}
+      height={675}
+      alt="Downtown Yangon — the traffic CaCa was designed for"
+    />
+  );
+  sheets[14].aside = (
+    <Artifact
+      src="/caca/roadmap-phases.png"
+      width={976}
+      height={691}
+      alt="Phased roadmap — MVP launch growing through four feature phases without pausing"
+      diagram
+    />
+  );
+
+  // chapter groups — the TOC rows. start = first sheet index of the group
+  // (the TOC sheet itself is index 1). No chips (they were the dropped edge
+  // tabs' colors), no page numbers (folio removed — bottom chrome is out):
+  // just numeral + title, dashed row separators.
+  const groups = [
+    { desc: t("cs.toc.brief"), start: 0 },
+    { desc: t("cs.toc.surfaces"), start: 5 },
+    { desc: t("cs.toc.system"), start: 11 },
+    { desc: t("cs.toc.context"), start: 13 },
+    { desc: t("cs.toc.outcome"), start: 14 },
+  ];
+
+  // contents sheet — clickable rows that ride the fast jump
+  sheets[1].footer = (
+    <div className="w-full max-w-2xl">
+      {groups.map((g, gi) => (
+        <button
+          key={g.desc}
+          type="button"
+          onClick={() => jumpToSheet(g.start)}
+          className="group/toc flex w-full cursor-pointer items-baseline gap-3 border-b border-dashed border-[var(--paper-edge)] py-3.5 text-left last:border-b-0 sm:gap-4"
+        >
+          <span className="w-7 flex-none text-sm italic text-neutral-400 dark:text-neutral-500">
+            {["i.", "ii.", "iii.", "iv.", "v."][gi]}
+          </span>
+          <span className="text-lg font-medium text-foreground underline-offset-4 group-hover/toc:underline md:text-2xl">
+            {g.desc}
+          </span>
+        </button>
+      ))}
+    </div>
+  );
+
   // outcome: receipts again, where the claim is made
-  sheets[13].footer = proofRow;
+  sheets[14].footer = proofRow;
 
   // closing: CTA
   sheets[sheets.length - 1].footer = (
@@ -151,5 +270,11 @@ export default function CacaCaseStudy() {
     </Link>
   );
 
-  return <PaperSheets sheets={sheets} corner={closeButton} />;
+  return (
+    <PaperSheets
+      sheets={sheets}
+      corner={closeButton}
+      runhead={t("cs.runhead")}
+    />
+  );
 }

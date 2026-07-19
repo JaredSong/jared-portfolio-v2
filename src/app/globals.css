@@ -376,6 +376,51 @@ body::after {
   }
 }
 
+/* Paper height = one viewport + per-sheet overhang (PaperSheets sets
+   --sheet-overhang inline). Declared here, vh first, so browsers without
+   svh fall back to vh instead of silently dropping min-height — a dropped
+   min-height collapses the paper to content height and the sheet beneath
+   bleeds through (the "last page" tear, 2026-07-09). */
+.sheet-paper {
+  min-height: calc(100vh + var(--sheet-overhang, 48px));
+  min-height: calc(100svh + var(--sheet-overhang, 48px));
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Sheet content reveal (Notebook-Tabs ref, approved 2026-07-09):
+   as a paper arrives, its kicker/title/body/aside/footer settle in
+   with a small stagger. ONLY inner content animates — the paper
+   itself never fades (text would bleed through, recorded bug).
+   Styles are gated behind .reveal-ready (set by PaperSheets on
+   mount) so a no-JS render never hides content; .sheet-arrived is
+   added per sheet by an IntersectionObserver at half-arrival.
+   ───────────────────────────────────────────────────────────── */
+/* Softer, longer settle — the trigger already waits for the paper to be
+   seated (paper first, then text), so the text can take its time. */
+.reveal-ready .sheet-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-ready .sheet-arrived .sheet-reveal {
+  opacity: 1;
+  transform: none;
+}
+.sheet-reveal.d1 { transition-delay: 0.05s; }
+.sheet-reveal.d2 { transition-delay: 0.14s; }
+.sheet-reveal.d3 { transition-delay: 0.24s; }
+.sheet-reveal.d4 { transition-delay: 0.34s; }
+.sheet-reveal.d5 { transition-delay: 0.44s; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready .sheet-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 /* ─────────────────────────────────────────────────────────────
    Touch-device scroll-driven phone slide-out (CacaFolder).
    On touch, scroll IS the hover gesture: as the folder card scrolls

@@ -29,6 +29,9 @@ const caveat = Caveat({
   weight: ["400", "600"],
   subsets: ["latin"],
 });
+// NOTE: a Bodoni Moda display serif was trialed for the case-study sheets
+// (Notebook-Tabs ref) and REVERTED 2026-07-09 — Jared liked the ref's
+// layout/scale/stagger, not its typeface. The site stays all-Geist.
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jaredsong.com"),

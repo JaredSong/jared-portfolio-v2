@@ -137,6 +137,18 @@ const dictionaries: Record<Lang, Dict> = {
       "CaCa taught me to design ecosystems, not screens: understand how users, operations, business goals, and technical constraints connect — then turn that complexity into a flow people can actually use. Real workflow first, roles second, system map third. The interface is what comes after.",
     "cs.closing.cta": "Get in touch",
     "cs.back": "← Back home",
+    // running head (top chrome; the bottom stays clean — no folio)
+    "cs.runhead": "CaCa · Case study",
+    // contents sheet
+    "cs.toc.kicker": "Contents",
+    "cs.toc.title": "Table of contents",
+    "cs.toc.body":
+      "Five chapters. Tap a row and the papers ride up to it — or just keep scrolling.",
+    "cs.toc.brief": "Why CaCa, my role, the challenge",
+    "cs.toc.surfaces": "One loop, five product surfaces",
+    "cs.toc.system": "Design system & unhappy paths",
+    "cs.toc.context": "Designing for Yangon",
+    "cs.toc.outcome": "What shipped, what it taught me",
 
     // ── Homepage ──
     // Positioning (2026-07-04): pattern, not project — voice line as H1,
@@ -358,6 +370,18 @@ const dictionaries: Record<Lang, Dict> = {
       "CaCa 教會我設計生態系，而不是畫面：先理解使用者、營運、商業目標與技術限制如何相連，再把這份複雜變成人真的能用的流程。先看真實的工作流程，再認角色，再畫系統地圖——介面，是最後才來的東西。",
     "cs.closing.cta": "與我聯繫",
     "cs.back": "← 回首頁",
+    // 頁首列（頂部資訊；底部保持乾淨——無頁碼）
+    "cs.runhead": "CaCa · 案例研究",
+    // 目錄頁
+    "cs.toc.kicker": "目錄",
+    "cs.toc.title": "章節目錄",
+    "cs.toc.body":
+      "五個章節。點任一列，紙頁會快速翻到那裡——或者，繼續往下捲就好。",
+    "cs.toc.brief": "為什麼有 CaCa、我的角色、挑戰",
+    "cs.toc.surfaces": "一個循環、五個產品介面",
+    "cs.toc.system": "設計系統與例外流程",
+    "cs.toc.context": "為仰光而設計",
+    "cs.toc.outcome": "上線了什麼、學到什麼",
 
     // ── Homepage ──
     "home.hero.title": "混亂的工作流程 → 清晰的產品體驗。",
