@@ -45,7 +45,7 @@ export default function CookieConsent() {
 
   return (
     <div className="fixed inset-x-4 bottom-4 z-50 flex justify-center print:hidden">
-      <div className="paper-grain flex max-w-xl flex-wrap items-center gap-x-5 gap-y-3 rounded-2xl border border-[var(--paper-edge)] bg-[var(--paper)] px-5 py-4 shadow-[var(--paper-shadow)]">
+      <div className="paper-grain relative flex max-w-xl flex-wrap items-center gap-x-5 gap-y-3 rounded-2xl border border-[var(--paper-edge)] bg-[var(--paper)] px-5 py-4 shadow-[var(--paper-shadow)]">
         <p className="min-w-0 flex-1 text-sm leading-relaxed text-neutral-600 dark:text-neutral-300">
           {t("cookie.message")}
         </p>
